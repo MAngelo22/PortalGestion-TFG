@@ -1,11 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client'; // Cambia la importación de 'react-dom' a 'react-dom/client'
 import './index.css';  // Si usas estilos globales
-import App from './App';  // Importa el componente principal
+import App from './App.js';  // Importa el componente principal
 
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));  // Usa createRoot en lugar de render
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById('root')  // Asegúrate de que este div esté presente en el HTML
+  </React.StrictMode>
 );

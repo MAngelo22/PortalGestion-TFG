@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import logo from "../media/img/porrtalgestion_logo.png"; // Importa el logo directamente
-import "./LoginForm.css";
+import "./estilos/Css_Login.css";
 
-const LoginForm = () => {
+const LoginForm = ({ onLoginSuccess }) => { // Recibe la prop onLoginSuccess
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -11,6 +11,7 @@ const LoginForm = () => {
     e.preventDefault();
     if (email === "test@example.com" && password === "1234") {
       setMessage("¡Login exitoso!");
+      onLoginSuccess(); // Llama la función pasada como prop
     } else {
       setMessage("Credenciales incorrectas");
     }
