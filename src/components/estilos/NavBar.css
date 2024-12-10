@@ -1,7 +1,7 @@
 /* Header */
 .header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   background-color: #f8f8f8;
   border-bottom: 1px solid #e0e0e0;
@@ -13,6 +13,12 @@
   width: 100%; /* Hace que el navbar ocupe todo el ancho de la página */
   z-index: 100;
   box-sizing: border-box; /* Asegura que el padding se incluya en el ancho */
+}
+
+.logo{
+  padding: 5px 15px;
+  height: 60px;
+  width: 60px;
 }
 
 /* Ajusta el logo */
@@ -53,6 +59,7 @@
 .nav-links {
   display: flex;
   gap: 20px;
+  padding: 5px 15px;
 }
 
 .nav-links a {
