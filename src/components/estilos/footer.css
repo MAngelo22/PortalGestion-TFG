@@ -1,0 +1,32 @@
+/* Footer */
+.footer {
+    background-color: #1200b8;
+    color: white;
+    padding: 20px 50px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: fixed;
+    bottom: 0;
+    left: 0;  /* Asegura que esté alineado a la izquierda */
+    right: 0; /* Asegura que se extienda hasta el borde derecho */
+    width: 100%; /* Hace que el navbar ocupe todo el ancho de la página */
+    z-index: 100;
+    box-sizing: border-box; /* Asegura que el padding se incluya en el ancho */
+  }
+  
+  .footer-section h3 {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .footer-section a {
+    font-size: 0.9rem;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .footer-section a:hover {
+    text-decoration: underline;
+  }
