@@ -1,8 +1,7 @@
 import React from "react";
-//import "./estilos/Empleados.css";
-import "./estilos/estilo.css";
-import Navbar from "./NavBar.js"; // Importamos el Navbar
-import Footer from "./Footer.js"; // Importamos el Footer
+import { useNavigate } from "react-router-dom";
+import Navbar from "./NavBar.js"; 
+import Footer from "./Footer.js";
 
 const empleados = [
   {
@@ -29,7 +28,13 @@ const empleados = [
   },
 ];
 
-const Empleados = () => {
+const ListEmpleados = () => {
+  const navigate = useNavigate();
+
+  const handleCardClick = (nombre) => {
+    navigate(`/empleado/${encodeURIComponent(nombre)}`);
+  };
+
   return (
     <div>
       <Navbar />
@@ -67,7 +72,11 @@ const Empleados = () => {
 
         <main className="cards-container">
           {empleados.map((empleado, index) => (
-            <div key={index} className="card">
+            <div
+              key={index}
+              className="card"
+              onClick={() => handleCardClick(empleado.nombre)}
+            >
               <img src={empleado.foto} alt={empleado.nombre} />
               <h4>{empleado.nombre}</h4>
               <p>{empleado.descripcion}</p>
@@ -87,9 +96,9 @@ const Empleados = () => {
           <button>3</button>
         </footer>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
 
-export default Empleados;
+export default ListEmpleados;
