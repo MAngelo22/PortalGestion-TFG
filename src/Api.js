@@ -18,7 +18,7 @@ export default api;
 
 //   useEffect(() => {
 //     // Solicitar datos al backend
-//     api.get('/usuarios')
+//     api.get('/api/usuarios')
 //       .then((response) => {
 //         setUsuarios(response.data);
 //       })
