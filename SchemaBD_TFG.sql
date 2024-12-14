@@ -21,7 +21,7 @@ CREATE TABLE usuarios (
     ciudad VARCHAR(50),
     departamento VARCHAR(100),
     fecha_incorporacion DATE,
-    foto VARCHAR(255),
+    foto BLOB,
     rol_id INT NOT NULL,
     FOREIGN KEY (rol_id) REFERENCES roles(id)
 );
