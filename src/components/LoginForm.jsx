@@ -19,7 +19,7 @@ const LoginForm = ({ onLoginSuccess }) => { // Recibe la prop onLoginSuccess
   };
 
   return (
-    <div className="main-container">
+    <div className="main-container-logo">
     <div
   style={{
     display: "flex",
