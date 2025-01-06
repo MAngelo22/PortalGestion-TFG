@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import LoginForm from "./components/LoginForm.jsx"; // Ruta del login
 import Dashboard from "./components/Catalogo.jsx"; // Ruta del dashboard
 import Empleados from "./components/ListEmpleados.jsx"; // Nueva página de empleados
+import Proyectos from "./components/proyecto/ListProyectos.jsx"; // Nueva página de proyectos
 import Navbar from "./components/NavBar.js"; // Barra de navegación
 
 const App = () => {
@@ -27,7 +28,8 @@ const App = () => {
           }
         />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/empleados" element={<Empleados />} /> {/* Nueva ruta */}
+        <Route path="/empleados" element={<Empleados />} />
+        <Route path="/proyectos" element={<Proyectos />} />
       </Routes>
     </Router>
   );

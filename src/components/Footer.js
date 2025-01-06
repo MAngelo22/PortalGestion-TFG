@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import "./estilos/footer.css"; // Agrega estilos para el navbar
 
 const Footer = () => {
@@ -30,6 +29,7 @@ const Footer = () => {
           <a href="#instagram">📷</a>
           <a href="#linkedin">💼</a>
         </div>
+        <p>© 2025 Portal Gestión. Todos los derechos reservados.</p>
       </footer>
   );
 };
