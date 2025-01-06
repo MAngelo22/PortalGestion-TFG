@@ -3,48 +3,48 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../NavBar.js"; 
 import Footer from "../Footer.js";
 
-// const proyectos = [
-//   {
-//     nombre: "Javier Martínez",
-//     descripcion: "Desarrollador web con experiencia en JavaScript y React.",
-//     nivel: "Experto",
-//     estrellas: 5,
-//     foto: "/path/to/javier.jpg",
-//   },
-//   {
-//     nombre: "Ana Torres",
-//     descripcion: "Analista de datos con habilidades en Python y SQL.",
-//     nivel: "Experto",
-//     estrellas: 4,
-//     foto: "/path/to/ana.jpg",
-//   },
-//   {
-//     nombre: "Lucas Gómez",
-//     descripcion:
-//       "Ingeniero de software especializado en inteligencia artificial.",
-//     nivel: "Experto",
-//     estrellas: 4,
-//     foto: "/path/to/lucas.jpg",
-//   },
-// ];
+const proyectos = [
+  {
+    nombre: "Javier Martínez",
+    descripcion: "Desarrollador web con experiencia en JavaScript y React.",
+    nivel: "Experto",
+    estrellas: 5,
+    foto: "/path/to/javier.jpg",
+  },
+  {
+    nombre: "Ana Torres",
+    descripcion: "Analista de datos con habilidades en Python y SQL.",
+    nivel: "Experto",
+    estrellas: 4,
+    foto: "/path/to/ana.jpg",
+  },
+  {
+    nombre: "Lucas Gómez",
+    descripcion:
+      "Ingeniero de software especializado en inteligencia artificial.",
+    nivel: "Experto",
+    estrellas: 4,
+    foto: "/path/to/lucas.jpg",
+  },
+];
 
 const ListProyectos = () => {
   const navigate = useNavigate();
 
-  const [proyectos, setProyectos] = useState([]);
+  // const [proyectos, setProyectos] = useState([]);
 
-  useEffect(() => {
-    const fetchproyectos = async () => {
-      try {
-        const data = await proyectoService.getproyectos();
-        setProyectos(data);
-      } catch (error) {
-        console.error('Error fetching proyectos:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchproyectos = async () => {
+  //     try {
+  //       const data = await proyectoService.getproyectos();
+  //       setProyectos(data);
+  //     } catch (error) {
+  //       console.error('Error fetching proyectos:', error);
+  //     }
+  //   };
 
-    fetchproyectos();
-  }, []);
+  //   fetchproyectos();
+  // }, []);
 
   const handleCardClick = (nombre) => {
     navigate(`/empleado/${encodeURIComponent(nombre)}`);
