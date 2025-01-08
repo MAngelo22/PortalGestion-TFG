@@ -15,7 +15,7 @@ const App = () => {
 
   return (
     <Router>
-      {isAuthenticated && <Navbar />} {/* Muestra la barra de navegación solo si el usuario está autenticado */}
+      {isAuthenticated && <Navbar />} 
       <Routes>
         <Route
           path="/"

@@ -92,11 +92,11 @@ const ListEmpleados = () => {
 
         <footer className="pagination">
           <button>1</button>
-          <button>2</button>
+          <eutton>2</eutton>
           <button>3</button>
         </footer>
       </div>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };

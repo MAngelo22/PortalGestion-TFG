@@ -1,11 +1,16 @@
 import axios from 'axios';
 
-const api = axios.create({
-  baseURL: 'http://localhost:8085',
-});
+class Api {
+  static api = axios.create({
+    baseURL: 'http://localhost:8085',
+  });
 
-export default api;
+  static getUsuarios() {
+    return this.api.get('/api/usuarios');
+  }
+}
 
+export default Api;
 
 // El código de encima hace la conexión con el backend y el de debajo es para probarlo 
 

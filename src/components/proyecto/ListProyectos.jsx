@@ -1,55 +1,65 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../NavBar.js"; 
-import Footer from "../Footer.js";
+import Navbar from "../NavBar";
+import ReactPaginate from "react-paginate";
+import proyectoServiceInstance from "../services/ProyectoService";
 
-const proyectos = [
-  {
-    nombre: "Javier Martínez",
-    descripcion: "Desarrollador web con experiencia en JavaScript y React.",
-    nivel: "Experto",
-    estrellas: 5,
-    foto: "/path/to/javier.jpg",
-  },
-  {
-    nombre: "Ana Torres",
-    descripcion: "Analista de datos con habilidades en Python y SQL.",
-    nivel: "Experto",
-    estrellas: 4,
-    foto: "/path/to/ana.jpg",
-  },
-  {
-    nombre: "Lucas Gómez",
-    descripcion:
-      "Ingeniero de software especializado en inteligencia artificial.",
-    nivel: "Experto",
-    estrellas: 4,
-    foto: "/path/to/lucas.jpg",
-  },
-];
+// const proyectos = [
+//   {
+//     nombre: "Javier Martínez",
+//     descripcion: "Desarrollador web con experiencia en JavaScript y React.",
+//     nivel: "Experto",
+//     estrellas: 5,
+//     foto: "/path/to/javier.jpg",
+//   },
+//   {
+//     nombre: "Ana Torres",
+//     descripcion: "Analista de datos con habilidades en Python y SQL.",
+//     nivel: "Experto",
+//     estrellas: 4,
+//     foto: "/path/to/ana.jpg",
+//   },
+//   {
+//     nombre: "Lucas Gómez",
+//     descripcion:
+//       "Ingeniero de software especializado en inteligencia artificial.",
+//     nivel: "Experto",
+//     estrellas: 4,
+//     foto: "/path/to/lucas.jpg",
+//   },
+// ];
 
 const ListProyectos = () => {
+
   const navigate = useNavigate();
+  const [proyectos, setProyectos] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 6;
 
-  // const [proyectos, setProyectos] = useState([]);
+    useEffect(() => {
+    const fetchproyectos = async () => {
+      try {
+        const data = await proyectoServiceInstance.obtenerProyectos();
+        setProyectos(data);
+      } catch (error) {
+        console.error('Error fetching proyectos:', error);
+      }
+    };
 
-  // useEffect(() => {
-  //   const fetchproyectos = async () => {
-  //     try {
-  //       const data = await proyectoService.getproyectos();
-  //       setProyectos(data);
-  //     } catch (error) {
-  //       console.error('Error fetching proyectos:', error);
-  //     }
-  //   };
-
-  //   fetchproyectos();
-  // }, []);
+    fetchproyectos();
+  }, []);
 
   const handleCardClick = (nombre) => {
-    navigate(`/empleado/${encodeURIComponent(nombre)}`);
+    navigate(`/proyecto/${encodeURIComponent(nombre)}`);
   };
 
+  const handlePageClick = (data) => {
+    setCurrentPage(data.selected);
+  };
+
+  const offset = currentPage * itemsPerPage;
+  const currentItems = proyectos.slice(offset, offset + itemsPerPage);
+  const pageCount = Math.ceil(proyectos.length / itemsPerPage);
   return (
     <div>
       <Navbar />
@@ -86,7 +96,7 @@ const ListProyectos = () => {
         </aside>
 
         <main className="cards-container">
-          {proyectos.map((proyecto, index) => (
+          {currentItems.map((proyecto, index) => (
             <div
               key={index}
               className="card"
@@ -105,11 +115,17 @@ const ListProyectos = () => {
           ))}
         </main>
 
-        <footer className="pagination">
-          <button>1</button>
-          <button>2</button>
-          <button>3</button>
-        </footer>
+        <ReactPaginate
+          previousLabel={"← Anterior"}
+          nextLabel={"Siguiente →"}
+          breakLabel={"..."}
+          pageCount={pageCount}
+          marginPagesDisplayed={2}
+          pageRangeDisplayed={3}
+          onPageChange={handlePageClick}
+          containerClassName={"pagination"}
+          activeClassName={"active"}
+        />
       </div>
       {/* <Footer /> */}
     </div>
