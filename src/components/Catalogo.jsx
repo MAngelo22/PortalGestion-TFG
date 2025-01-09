@@ -9,7 +9,7 @@ const Dashboard = () => {
     <div>
       <Navbar />
 
-      <main class="main-container">
+      <main className="main-container">
         <h1 className="main-title">Catálogo de empleados</h1>
         <div className="cards-container">
           {[
