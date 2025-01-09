@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "./NavBar.js"; 
-import Footer from "./Footer.js";
+import Navbar from "../NavBar.js"; 
+import Footer from "../Footer.jsx";
 
 const empleados = [
   {

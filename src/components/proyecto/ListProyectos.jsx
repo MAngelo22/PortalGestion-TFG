@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../NavBar";
-import ReactPaginate from "react-paginate";
 import proyectoServiceInstance from "../services/ProyectoService";
+import Paginacion from "../utils/Paginacion";
+import Filter from "../utils/Filter";
 
 // const proyectos = [
 //   {
@@ -30,24 +31,110 @@ import proyectoServiceInstance from "../services/ProyectoService";
 // ];
 
 const ListProyectos = () => {
-
   const navigate = useNavigate();
-  const [proyectos, setProyectos] = useState([]);
+  // const [proyectos, setProyectos] = useState([]); // comentado hasta quitar la constante de arriba
   const [currentPage, setCurrentPage] = useState(0);
   const itemsPerPage = 6;
 
-    useEffect(() => {
-    const fetchproyectos = async () => {
-      try {
-        const data = await proyectoServiceInstance.obtenerProyectos();
-        setProyectos(data);
-      } catch (error) {
-        console.error('Error fetching proyectos:', error);
-      }
-    };
+  const proyectos = [
+    {
+      nombre: "Proyecto Alpha",
+      descripcion: "Desarrollo de una aplicación web para gestión de tareas.",
+      nivel: "Experto",
+      estrellas: 5,
+      foto: "/path/to/alpha.jpg",
+    },
+    {
+      nombre: "Proyecto Beta",
+      descripcion: "Análisis de datos de ventas para una empresa minorista.",
+      nivel: "Experto",
+      estrellas: 4,
+      foto: "/path/to/beta.jpg",
+    },
+    {
+      nombre: "Proyecto Gamma",
+      descripcion: "Implementación de un sistema de inteligencia artificial.",
+      nivel: "Experto",
+      estrellas: 4,
+      foto: "/path/to/gamma.jpg",
+    },
+    {
+      nombre: "Proyecto Delta",
+      descripcion: "Desarrollo de una plataforma de comercio electrónico.",
+      nivel: "Experto",
+      estrellas: 5,
+      foto: "/path/to/delta.jpg",
+    },
+    {
+      nombre: "Proyecto Epsilon",
+      descripcion: "Creación de un sistema de gestión de inventarios.",
+      nivel: "Experto",
+      estrellas: 4,
+      foto: "/path/to/epsilon.jpg",
+    },
+    {
+      nombre: "Proyecto Zeta",
+      descripcion: "Desarrollo de una aplicación móvil para fitness.",
+      nivel: "Experto",
+      estrellas: 4,
+      foto: "/path/to/zeta.jpg",
+    },
+    {
+      nombre: "Proyecto Eta",
+      descripcion: "Implementación de un CRM para una empresa de servicios.",
+      nivel: "Experto",
+      estrellas: 5,
+      foto: "/path/to/eta.jpg",
+    },
+    {
+      nombre: "Proyecto Theta",
+      descripcion: "Análisis de datos financieros para una institución bancaria.",
+      nivel: "Experto",
+      estrellas: 4,
+      foto: "/path/to/theta.jpg",
+    },
+    {
+      nombre: "Proyecto Iota",
+      descripcion: "Desarrollo de un sistema de reservas para un hotel.",
+      nivel: "Experto",
+      estrellas: 4,
+      foto: "/path/to/iota.jpg",
+    },
+    {
+      nombre: "Proyecto Kappa",
+      descripcion: "Creación de una plataforma de aprendizaje en línea.",
+      nivel: "Experto",
+      estrellas: 5,
+      foto: "/path/to/kappa.jpg",
+    },
+    {
+      nombre: "Proyecto Lambda",
+      descripcion: "Desarrollo de una aplicación de seguimiento de salud.",
+      nivel: "Experto",
+      estrellas: 4,
+      foto: "/path/to/lambda.jpg",
+    },
+    {
+      nombre: "Proyecto Mu",
+      descripcion: "Implementación de un sistema de gestión de recursos humanos.",
+      nivel: "Experto",
+      estrellas: 4,
+      foto: "/path/to/mu.jpg",
+    },
+  ];
 
-    fetchproyectos();
-  }, []);
+  // useEffect(() => {
+  //   const fetchproyectos = async () => {
+  //     try {
+  //       const data = await proyectoServiceInstance.obtenerProyectos();
+  //       setProyectos(data);
+  //     } catch (error) {
+  //       console.error("Error fetching proyectos:", error);
+  //     }
+  //   };
+
+  //   fetchproyectos();
+  // }, []);
 
   const handleCardClick = (nombre) => {
     navigate(`/proyecto/${encodeURIComponent(nombre)}`);
@@ -65,35 +152,7 @@ const ListProyectos = () => {
       <Navbar />
 
       <div className="empleados-container">
-        <aside className="filters">
-          <h3>Sector</h3>
-          <label>
-            <input type="checkbox" /> Banca (124)
-          </label>
-          <label>
-            <input type="checkbox" /> Industria (378)
-          </label>
-          <h3>Experiencia</h3>
-          <label>
-            <input type="checkbox" /> Principiante (124)
-          </label>
-          <label>
-            <input type="checkbox" /> Intermedio (318)
-          </label>
-          <label>
-            <input type="checkbox" /> Experto (278)
-          </label>
-          <h3>Temática</h3>
-          <label>
-            <input type="checkbox" /> Desarrollo web (124)
-          </label>
-          <label>
-            <input type="checkbox" /> JavaScript (378)
-          </label>
-          <label>
-            <input type="checkbox" /> WordPress (278)
-          </label>
-        </aside>
+        <Filter />
 
         <main className="cards-container">
           {currentItems.map((proyecto, index) => (
@@ -115,17 +174,7 @@ const ListProyectos = () => {
           ))}
         </main>
 
-        <ReactPaginate
-          previousLabel={"← Anterior"}
-          nextLabel={"Siguiente →"}
-          breakLabel={"..."}
-          pageCount={pageCount}
-          marginPagesDisplayed={2}
-          pageRangeDisplayed={3}
-          onPageChange={handlePageClick}
-          containerClassName={"pagination"}
-          activeClassName={"active"}
-        />
+        <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
       </div>
       {/* <Footer /> */}
     </div>

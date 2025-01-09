@@ -1,8 +1,8 @@
 import React from "react";
 import "./estilos/estilo.css";
 import { useParams } from "react-router-dom";
-import Navbar from "./NavBar.js"; 
-import Footer from "./Footer.js";
+import Navbar from "../NavBar.js"; 
+import Footer from "../Footer.jsx";
 
 const empleados = [
   {
