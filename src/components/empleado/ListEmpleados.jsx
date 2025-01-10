@@ -3,33 +3,44 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../NavBar.js"; 
 import Footer from "../Footer.jsx";
 
-const empleados = [
-  {
-    nombre: "Javier Martínez",
-    descripcion: "Desarrollador web con experiencia en JavaScript y React.",
-    nivel: "Experto",
-    estrellas: 5,
-    foto: "/path/to/javier.jpg",
-  },
-  {
-    nombre: "Ana Torres",
-    descripcion: "Analista de datos con habilidades en Python y SQL.",
-    nivel: "Experto",
-    estrellas: 4,
-    foto: "/path/to/ana.jpg",
-  },
-  {
-    nombre: "Lucas Gómez",
-    descripcion:
-      "Ingeniero de software especializado en inteligencia artificial.",
-    nivel: "Experto",
-    estrellas: 4,
-    foto: "/path/to/lucas.jpg",
-  },
-];
+// const empleados = [
+//   {
+//     nombre: "Javier Martínez",
+//     descripcion: "Desarrollador web con experiencia en JavaScript y React.",
+//     nivel: "Experto",
+//     estrellas: 5,
+//     foto: "/path/to/javier.jpg",
+//   },
+//   {
+//     nombre: "Ana Torres",
+//     descripcion: "Analista de datos con habilidades en Python y SQL.",
+//     nivel: "Experto",
+//     estrellas: 4,
+//     foto: "/path/to/ana.jpg",
+//   },
+//   {
+//     nombre: "Lucas Gómez",
+//     descripcion:
+//       "Ingeniero de software especializado en inteligencia artificial.",
+//     nivel: "Experto",
+//     estrellas: 4,
+//     foto: "/path/to/lucas.jpg",
+//   },
+// ];
 
 const ListEmpleados = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    axios.get('http://localhost:8085/api/empleado/all')
+        .then(response => {
+          console.log('Respuesta: ', response);
+          setProyectos(response.data);
+        })
+        .catch(error => {
+            console.error('Error al obtener los cursos:', error);
+        });
+}, []);
 
   const handleCardClick = (nombre) => {
     navigate(`/empleado/${encodeURIComponent(nombre)}`);
