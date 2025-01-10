@@ -11,6 +11,7 @@ import Empleados from "./components/empleado/ListEmpleados.jsx"; // Nueva págin
 import Proyectos from "./components/proyecto/ListProyectos.jsx"; // Nueva página de proyectos
 import Navbar from "./components/NavBar.js"; // Barra de navegación
 import Cursos from "./components/curso/ListCursos.jsx";
+import Contactanos from "./components/Contactanos.jsx"; // Importa la página de contacto
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
@@ -33,6 +34,7 @@ const App = () => {
             )
           }
         />
+        <Route path="/contactanos" element={<Contactanos />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/empleados" element={<Empleados />} />
         <Route path="/proyectos" element={<Proyectos />} />

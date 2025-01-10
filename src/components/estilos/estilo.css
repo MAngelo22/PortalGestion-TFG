@@ -8,8 +8,9 @@ body {
   display: block;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: auto; /* Cambiar de 100vh a auto */
 }
+
 
 /* Contenedor principal */
 .main-container {

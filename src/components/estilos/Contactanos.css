@@ -1,0 +1,67 @@
+.contact-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* Asegura que el contenido comience después del Navbar */
+    font-family: Arial, sans-serif;
+    color: #1a1a1a;
+    text-align: center;
+    padding-top: 60px; /* Ajusta según la altura de tu Navbar */
+}
+  
+  h1 {
+    color: #0000ff; /* Color azul */
+  }
+  
+  .contact-info {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0;
+  }
+  
+  .contact-item {
+    width: 30%;
+    text-align: left;
+  }
+  
+  .contact-item i {
+    font-size: 24px;
+    color: #0000ff; /* Íconos en azul */
+  }
+  
+  .contact-item p {
+    margin: 10px 0;
+  }
+  
+  .contact-item a {
+    color: #0000ff;
+    text-decoration: underline;
+  }
+  
+  .contact-form {
+    margin: 30px auto;
+    width: 60%;
+  }
+  
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .contact-form .btn-submit {
+    background-color: #0000ff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .contact-form .btn-submit:hover {
+    background-color: #000099; /* Cambiar a un azul más oscuro al pasar el mouse */
+  }
+  

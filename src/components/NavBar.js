@@ -16,7 +16,7 @@ const Navbar = ({ onLogout }) => {
         <a href="/empleados">Empleados</a>
         <a href="/proyectos">Proyectos</a>
         <a href="/cursos">Cursos</a>
-        <a href="/nosotros">Sobre nosotros</a>
+        <a href="/Contactanos">Sobre nosotros</a>
       </nav>
       <div className="user-profile">
         <img src={userImg} alt="Usuario" />

@@ -14,7 +14,7 @@ const Footer = () => {
         <div className="footer-section">
           <h3>SERVICIOS</h3>
           <p>Asesoramiento personalizado</p>
-          <p>Financiación</p>
+          <a href="./Contactanos.jsx">Contactanos</a>
           <p>Bolsa de trabajo</p>
         </div>
         <div className="footer-section">
