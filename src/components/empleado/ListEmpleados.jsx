@@ -1,50 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../NavBar.js"; 
+import Navbar from "../NavBar.js";
 import Footer from "../Footer.jsx";
+import Paginacion from "../utils/Paginacion";
+import axios from "axios";
 
-// const empleados = [
-//   {
-//     nombre: "Javier Martínez",
-//     descripcion: "Desarrollador web con experiencia en JavaScript y React.",
-//     nivel: "Experto",
-//     estrellas: 5,
-//     foto: "/path/to/javier.jpg",
-//   },
-//   {
-//     nombre: "Ana Torres",
-//     descripcion: "Analista de datos con habilidades en Python y SQL.",
-//     nivel: "Experto",
-//     estrellas: 4,
-//     foto: "/path/to/ana.jpg",
-//   },
-//   {
-//     nombre: "Lucas Gómez",
-//     descripcion:
-//       "Ingeniero de software especializado en inteligencia artificial.",
-//     nivel: "Experto",
-//     estrellas: 4,
-//     foto: "/path/to/lucas.jpg",
-//   },
-// ];
 
 const ListEmpleados = () => {
   const navigate = useNavigate();
+  const [empleados, setEmpleados] = useState([]); // comentado hasta quitar la constante de arriba
+  const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 6;
 
   useEffect(() => {
     axios.get('http://localhost:8085/api/empleado/all')
-        .then(response => {
-          console.log('Respuesta: ', response);
-          setProyectos(response.data);
-        })
-        .catch(error => {
-            console.error('Error al obtener los cursos:', error);
-        });
-}, []);
+      .then(response => {
+        console.log('Respuesta: ', response);
+        setEmpleados(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener los cursos:', error);
+      });
+  }, []);
 
   const handleCardClick = (nombre) => {
     navigate(`/empleado/${encodeURIComponent(nombre)}`);
   };
+
+  const handlePageClick = (data) => {
+    setCurrentPage(data.selected);
+  };
+
+  const offset = currentPage * itemsPerPage;
+  const currentItems = empleados.slice(offset, offset + itemsPerPage);
+  const pageCount = Math.ceil(empleados.length / itemsPerPage);
 
   return (
     <div>
@@ -82,7 +71,7 @@ const ListEmpleados = () => {
         </aside>
 
         <main className="cards-container">
-          {empleados.map((empleado, index) => (
+          {currentItems.map((empleado, index) => (
             <div
               key={index}
               className="card"
@@ -101,14 +90,13 @@ const ListEmpleados = () => {
           ))}
         </main>
 
-        <footer className="pagination">
-          <button>1</button>
-          <eutton>2</eutton>
-          <button>3</button>
-        </footer>
+
+        <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
+
+        {/* </footer> */}
       </div>
       {/* <Footer /> */}
-    </div>
+    </div >
   );
 };
 
