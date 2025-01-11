@@ -12,6 +12,7 @@ import Proyectos from "./components/proyecto/ListProyectos.jsx"; // Nueva págin
 import CatProyectos from "./components/proyecto/CatalogoProyectos.jsx"; // Nueva página de Catalogos de proyectos
 import Navbar from "./components/NavBar.jsx"; // Barra de navegación
 import Cursos from "./components/curso/ListCursos.jsx";
+import CatCursos from "./components/curso/CatalogoCurso.jsx"; // Nueva página de Catalogos de Cursos
 import MisProyectos from "./components//misdatos/MisProyectos.jsx"; // Importa el componente de MisProyectos
 import MisCursos from "./components//misdatos/MisCursos.jsx"; // Importa el componente de MisCursos
 import MiPerfil from "./components/misdatos/MiPerfil"; // Ruta del componente MiPerfil
@@ -38,7 +39,8 @@ const App = () => {
               <LoginForm onLoginSuccess={handleLoginSuccess} />
             )
           }
-        />
+        />+
+        <Route path="/catCur" element={<CatCursos />} />
         <Route path="/catPro" element={<CatProyectos />} />
         <Route path="/miperfil" element={<MiPerfil />} />
         <Route path="/miscursos" element={<MisCursos />} />

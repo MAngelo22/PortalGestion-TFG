@@ -82,9 +82,7 @@ const MiPerfil = () => {
         <Link to="/misproyectos" className="btn-link">
           <button className="btn-editar">Mis Proyectos</button>
         </Link>
-        <Link to="/catPro" className="btn-link">
-          <button className="btn-editar">Catalogo Proyectos</button>
-        </Link>
+        
       </div>
 
       <div>

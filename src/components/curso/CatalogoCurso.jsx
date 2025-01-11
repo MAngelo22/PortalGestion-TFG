@@ -1,8 +1,7 @@
 import React from "react";
-//import "./estilos/Css_Catalogo.css";
-import "./estilos/estilo.css";
-import Navbar from "./NavBar.js"; // Importamos el Navbar
-import Footer from "./Footer.jsx"; // Importamos el Footer
+import "./CatCur.css";
+import Navbar from "../NavBar"; // Importamos el Navbar
+import Footer from "../Footer"; // Importamos el Footer
 
 const CatalogoCurso = () => {
   return (
@@ -10,7 +9,7 @@ const CatalogoCurso = () => {
       <Navbar />
 
       <main className="main-container">
-        <h1 className="main-title">Catálogo de empleados</h1>
+        <h1 className="main-title">Catálogo de Cursos</h1>
         <div className="cards-container">
           {[
             "Diseño",
