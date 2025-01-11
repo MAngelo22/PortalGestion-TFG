@@ -1,5 +1,6 @@
-.contact-page {
-    display: flex;
+.contactanos {
+    display: block;
+    margin-top: 5px;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start; /* Asegura que el contenido comience después del Navbar */
@@ -28,6 +29,11 @@
     font-size: 24px;
     color: #0000ff; /* Íconos en azul */
   }
+  .contact-item img {
+    margin-left: 25%;
+    color: #0000ff; /* Íconos en azul */
+  }
+  
   
   .contact-item p {
     margin: 10px 0;
