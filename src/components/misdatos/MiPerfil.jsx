@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Importa Link para las rutas
 import "./MiPerfil.css"; // Archivo CSS para estilos
 import Navbar from "../NavBar";
 import Footer from "../Footer";
@@ -74,8 +75,13 @@ const MiPerfil = () => {
         </div>
         <button className="btn-editar">Editar</button>
 
-        <button className="btn-editar">Mis Cursos</button>
-        <button className="btn-editar">Mis Proyectos</button>
+        {/* Botones para redireccionar a Mis Cursos y Mis Proyectos */}
+        <Link to="/miscursos" className="btn-link">
+          <button className="btn-editar">Mis Cursos</button>
+        </Link>
+        <Link to="/misproyectos" className="btn-link">
+          <button className="btn-editar">Mis Proyectos</button>
+        </Link>
       </div>
 
       <div>
