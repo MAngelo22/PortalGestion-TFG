@@ -1,7 +1,7 @@
 .footer {
   background-color: #1200b8;
   color: white;
-  padding: 20px 50px;
+  padding: 10px 20px; /* Reducido el padding */
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
@@ -12,67 +12,69 @@
   width: 100%;
   z-index: 100;
   box-sizing: border-box;
-  gap: 10px;
+  gap: 15px; /* Espaciado entre secciones */
 }
 
 .footer-section {
   flex: 1;
-  min-width: 200px;
-  margin-bottom: 20px;
+  min-width: 150px; /* Menor anchura mínima */
+  margin-bottom: 10px; /* Reducido el margen */
 }
 
 .footer-section h3 {
-  font-size: 1rem;
+  font-size: 0.9rem; /* Reducido el tamaño de fuente */
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 5px; /* Reducido el margen inferior */
 }
 
 .footer-section a {
-  font-size: 0.9rem;
+  font-size: 0.85rem; /* Reducido el tamaño de fuente */
   color: white;
   text-decoration: none;
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 3px; /* Reducido el margen inferior */
 }
 
 .footer-section a:hover {
   text-decoration: underline;
 }
 
+/* Estilo para pantallas medianas */
 @media screen and (max-width: 768px) {
   .footer {
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 15px; /* Reducido el padding */
     gap: 10px;
   }
 
   .footer-section {
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Reducido el margen */
     width: 100%;
   }
 
   .footer-section a {
-    font-size: 0.85rem;
+    font-size: 0.8rem; /* Menor tamaño de fuente */
   }
 }
 
+/* Estilo para pantallas pequeñas */
 @media screen and (max-width: 480px) {
   .footer {
-    padding: 15px;
-    gap: 15px;
+    padding: 10px; /* Más compacto */
+    gap: 10px;
   }
 
   .footer-section h3 {
-    font-size: 0.9rem;
+    font-size: 0.8rem; /* Fuente más pequeña */
   }
 
   .footer-section a {
-    font-size: 0.8rem;
+    font-size: 0.75rem; /* Reducido tamaño de fuente */
   }
 
   .footer-section {
-    padding: 10px;
+    padding: 5px; /* Espaciado interno más compacto */
   }
 }

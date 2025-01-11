@@ -11,7 +11,7 @@ const MisCursos = () => {
     <div className="mis-cursos-container">
       <h1 className="mis-cursos-title">Mis Proyectos</h1>
       <img src={cursosImg} alt="Ilustración de cursos" className="cursos-image" />
-      <p className="cursos-description">Añade formación a tu perfil</p>
+      <p className="cursos-description">Añade proyectos a tu perfil</p>
       <button className="explorar-cursos-button">Explora el catálogo de cursos</button>
     </div>
     <div>

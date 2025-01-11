@@ -9,6 +9,7 @@ import LoginForm from "./components/LoginForm.jsx"; // Ruta del login
 import Dashboard from "./components/Catalogo.jsx"; // Ruta del dashboard
 import Empleados from "./components/empleado/ListEmpleados.jsx"; // Nueva página de empleados
 import Proyectos from "./components/proyecto/ListProyectos.jsx"; // Nueva página de proyectos
+import CatProyectos from "./components/proyecto/CatalogoProyectos.jsx"; // Nueva página de Catalogos de proyectos
 import Navbar from "./components/NavBar.jsx"; // Barra de navegación
 import Cursos from "./components/curso/ListCursos.jsx";
 import MisProyectos from "./components//misdatos/MisProyectos.jsx"; // Importa el componente de MisProyectos
@@ -37,6 +38,7 @@ const App = () => {
             )
           }
         />
+        <Route path="/catPro" element={<CatProyectos />} />
         <Route path="/miperfil" element={<MiPerfil />} />
         <Route path="/miscursos" element={<MisCursos />} />
         <Route path="/misProyectos" element={<MisProyectos />} />
