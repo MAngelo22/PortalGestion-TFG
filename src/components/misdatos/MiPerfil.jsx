@@ -73,7 +73,11 @@ const MiPerfil = () => {
           </div>
         </div>
         <button className="btn-editar">Editar</button>
+
+        <button className="btn-editar">Mis Cursos</button>
+        <button className="btn-editar">Mis Proyectos</button>
       </div>
+
       <div>
         <Footer />
       </div>
