@@ -30,13 +30,14 @@
     color: #0000ff; /* Íconos en azul */
   }
   .contact-item img {
-    margin-left: 25%;
+    margin-left: 43%;
     color: #0000ff; /* Íconos en azul */
   }
   
   
   .contact-item p {
     margin: 10px 0;
+    margin-left: 15%;
   }
   
   .contact-item a {
