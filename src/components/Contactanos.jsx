@@ -1,6 +1,6 @@
 import React from "react";
 import "./estilos/Contactanos.css";
-import Navbar from "./NavBar.js";
+import Navbar from "./NavBar.jsx";
 import Footer from "./Footer.jsx";
 import tlf from "../media/img/ct1.png";
 import carta from "../media/img/ct2.png";

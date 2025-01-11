@@ -9,7 +9,7 @@ import LoginForm from "./components/LoginForm.jsx"; // Ruta del login
 import Dashboard from "./components/Catalogo.jsx"; // Ruta del dashboard
 import Empleados from "./components/empleado/ListEmpleados.jsx"; // Nueva página de empleados
 import Proyectos from "./components/proyecto/ListProyectos.jsx"; // Nueva página de proyectos
-import Navbar from "./components/NavBar.js"; // Barra de navegación
+import Navbar from "./components/NavBar.jsx"; // Barra de navegación
 import Cursos from "./components/curso/ListCursos.jsx";
 import MisProyectos from "./components//misdatos/MisProyectos.jsx"; // Importa el componente de MisProyectos
 import MisCursos from "./components//misdatos/MisCursos.jsx"; // Importa el componente de MisCursos

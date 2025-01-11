@@ -1,7 +1,7 @@
 import React from "react";
 //import "./estilos/Css_Catalogo.css";
 import "./estilos/estilo.css";
-import Navbar from "./NavBar.js"; // Importamos el Navbar
+import Navbar from "./NavBar.jsx"; // Importamos el Navbar
 import Footer from "./Footer.jsx"; // Importamos el Footer
 
 const Dashboard = () => {
