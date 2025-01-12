@@ -5,6 +5,7 @@ import proyectoServiceInstance from "../services/ProyectoService";
 import Paginacion from "../utils/Paginacion";
 import Filter from "../utils/Filter";
 import axios from "axios";
+import Footer from "../Footer";
 
 
 const ListProyectos = () => {
@@ -65,7 +66,7 @@ const ListProyectos = () => {
 
         <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
       </div>
-      {/* <Footer /> */}
+      <Footer/>
     </div>
   );
 };

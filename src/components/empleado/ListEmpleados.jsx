@@ -11,9 +11,19 @@ const ListEmpleados = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [mostrarFormulario, setMostrarFormulario] = useState(false)
   const itemsPerPage = 8;
   const [showForm, setShowForm] = useState(false);
   const [nuevoEmpleado, setNuevoEmpleado] = useState({
+    nombre: '',
+    apellidos: '',
+    email: '',
+    descripcion: '',
+    nivel: 'Principiante',
+    estrellas: 3,
+    foto: ''
+  });
+  const [empleadoEditar, setEmpleadoEditar] = useState({
     nombre: '',
     apellidos: '',
     email: '',
@@ -134,6 +144,21 @@ const ListEmpleados = () => {
       descripcion: '',
       nivel: 'Principiante',
       estrellas: 3,
+      foto: ''
+    });
+  };
+
+  const handleUpdateEmpleado = (e) => {
+    e.preventDefault();
+    actualizarEmpleado(e.id, empleadoEditar);
+    setShowForm(false);
+    setEmpleadoEditar({
+      nombre: '',
+      apellidos: '',
+      email: '',
+      descripcion: '',
+      nivel: '',
+      estrellas: 0,
       foto: ''
     });
   };
@@ -274,12 +299,16 @@ const ListEmpleados = () => {
               <div className="card-actions">
                 <button
                   className="edit-btn"
-                  onClick={(e) => {
+                  onClick={(e) => {/*
                     e.stopPropagation();
                     actualizarEmpleado(empleado.id, {
                       ...empleado,
-                      descripcion: prompt('Nueva descripción:', empleado.descripcion) || empleado.descripcion
-                    });
+                      nombre: prompt('Nueva descripción:', empleado.nombre) || empleado.nombre
+                    });*/
+                    e.stopPropagation();
+                    e.preventDefault();
+                    setEmpleadoEditar(empleado)
+                    setMostrarFormulario(true)
                   }}
                 >
                   Editar
@@ -297,6 +326,65 @@ const ListEmpleados = () => {
               </div>
             </div>
           ))}
+                        {mostrarFormulario && (
+              <div className="modal">
+                <div className="modal-content">
+                  <form onSubmit={handleUpdateEmpleado}>
+                    <input
+                      type="text"
+                      placeholder="Nombre"
+                      value={empleadoEditar.nombre}
+                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, nombre: e.target.value })}
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="Apellidos"
+                      value={empleadoEditar.apellidos}
+                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, apellidos: e.target.value })}
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      value={empleadoEditar.email}
+                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, email: e.target.value })}
+                      required
+                    />
+                    <textarea
+                      placeholder="Descripción"
+                      value={empleadoEditar.descripcion}
+                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, descripcion: e.target.value })}
+                    />
+                    <select
+                      value={empleadoEditar.nivel}
+                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, nivel: e.target.value })}
+                    >
+                      <option value="Principiante">Principiante</option>
+                      <option value="Intermedio">Intermedio</option>
+                      <option value="Experto">Experto</option>
+                    </select>
+                    <input
+                      type="number"
+                      min="1"
+                      max="5"
+                      value={empleadoEditar.estrellas}
+                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, estrellas: parseInt(e.target.value) })}
+                    />
+                    <input
+                      type="text"
+                      placeholder="URL de la foto"
+                      value={empleadoEditar.foto}
+                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, foto: e.target.value })}
+                    />
+                    <div className="form-buttons">
+                      <button type="submit">Guardar</button>
+                      <button type="button" onClick={() => setMostrarFormulario(false)}>Cancelar</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            )}
         </main>
 
         <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
