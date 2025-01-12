@@ -11,14 +11,16 @@ const ListEmpleados = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const itemsPerPage = 6;
+  const itemsPerPage = 8;
   const [showForm, setShowForm] = useState(false);
   const [nuevoEmpleado, setNuevoEmpleado] = useState({
     nombre: '',
+    apellidos: '',
+    email: '',
     descripcion: '',
     nivel: 'Principiante',
     estrellas: 3,
-    foto: 'https://via.placeholder.com/150'
+    foto: ''
   });
 
   // READ - Obtener todos los empleados
@@ -42,18 +44,24 @@ const ListEmpleados = () => {
 
   // CREATE - Crear nuevo empleado
   const crearEmpleado = async (nuevoEmpleado) => {
+
+    console.log('Nuevo empleado: ', nuevoEmpleado);
     setLoading(true);
     setError(null);
     try {
-      const empleadoData = {
-        nombre: nuevoEmpleado.nombre,
-        descripcion: nuevoEmpleado.descripcion,
-        nivel: nuevoEmpleado.nivel,
-        estrellas: nuevoEmpleado.estrellas,
-        foto: nuevoEmpleado.foto
-      };
+      // const empleadoData = {
+      //   nombre: nuevoEmpleado.nombre,
+      //   apellidos: nuevoEmpleado.apellidos,
+      //   email: nuevoEmpleado.email,
+      //   descripcion: nuevoEmpleado.descripcion,
+      //   nivel: nuevoEmpleado.nivel,
+      //   estrellas: nuevoEmpleado.estrellas,
+      //   foto: nuevoEmpleado.foto
+      // };
 
-      const response = await axios.post('http://localhost:8085/api/empleado/new', empleadoData);
+      // console.log('Empleado data: ', empleadoData);
+
+      const response = await axios.post('http://localhost:8085/api/empleado/new', nuevoEmpleado);
       setEmpleados([...empleados, response.data]);
       alert('Empleado creado exitosamente');
     } catch (error) {
@@ -70,7 +78,7 @@ const ListEmpleados = () => {
     setError(null);
     try {
       const response = await axios.put(`http://localhost:8085/api/empleado/edit/${id}`, datosActualizados);
-      const nuevosEmpleados = empleados.map(emp => 
+      const nuevosEmpleados = empleados.map(emp =>
         emp.id === id ? response.data : emp
       );
       setEmpleados(nuevosEmpleados);
@@ -121,23 +129,25 @@ const ListEmpleados = () => {
     setShowForm(false);
     setNuevoEmpleado({
       nombre: '',
+      apellidos: '',
+      email: '',
       descripcion: '',
       nivel: 'Principiante',
       estrellas: 3,
-      foto: 'https://via.placeholder.com/150'
+      foto: ''
     });
   };
 
   return (
     <div>
       <Navbar />
-      
+
       {loading && (
         <div className="loading-overlay">
           <div className="loading-spinner">Cargando...</div>
         </div>
       )}
-      
+
       {error && (
         <div className="error-message">
           {error}
@@ -177,7 +187,7 @@ const ListEmpleados = () => {
 
         <main className="cards-container">
           <div className="add-employee-section">
-            <button 
+            <button
               className="add-employee-btn"
               onClick={() => setShowForm(true)}
             >
@@ -192,18 +202,31 @@ const ListEmpleados = () => {
                       type="text"
                       placeholder="Nombre"
                       value={nuevoEmpleado.nombre}
-                      onChange={(e) => setNuevoEmpleado({...nuevoEmpleado, nombre: e.target.value})}
+                      onChange={(e) => setNuevoEmpleado({ ...nuevoEmpleado, nombre: e.target.value })}
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="Apellidos"
+                      value={nuevoEmpleado.apellidos}
+                      onChange={(e) => setNuevoEmpleado({ ...nuevoEmpleado, apellidos: e.target.value })}
+                      required
+                    />
+                    <input
+                      type="text"
+                      placeholder="Email"
+                      value={nuevoEmpleado.email}
+                      onChange={(e) => setNuevoEmpleado({ ...nuevoEmpleado, email: e.target.value })}
                       required
                     />
                     <textarea
                       placeholder="Descripción"
                       value={nuevoEmpleado.descripcion}
-                      onChange={(e) => setNuevoEmpleado({...nuevoEmpleado, descripcion: e.target.value})}
-                      required
+                      onChange={(e) => setNuevoEmpleado({ ...nuevoEmpleado, descripcion: e.target.value })}
                     />
                     <select
                       value={nuevoEmpleado.nivel}
-                      onChange={(e) => setNuevoEmpleado({...nuevoEmpleado, nivel: e.target.value})}
+                      onChange={(e) => setNuevoEmpleado({ ...nuevoEmpleado, nivel: e.target.value })}
                     >
                       <option value="Principiante">Principiante</option>
                       <option value="Intermedio">Intermedio</option>
@@ -214,13 +237,13 @@ const ListEmpleados = () => {
                       min="1"
                       max="5"
                       value={nuevoEmpleado.estrellas}
-                      onChange={(e) => setNuevoEmpleado({...nuevoEmpleado, estrellas: parseInt(e.target.value)})}
+                      onChange={(e) => setNuevoEmpleado({ ...nuevoEmpleado, estrellas: parseInt(e.target.value) })}
                     />
                     <input
                       type="text"
                       placeholder="URL de la foto"
                       value={nuevoEmpleado.foto}
-                      onChange={(e) => setNuevoEmpleado({...nuevoEmpleado, foto: e.target.value})}
+                      onChange={(e) => setNuevoEmpleado({ ...nuevoEmpleado, foto: e.target.value })}
                     />
                     <div className="form-buttons">
                       <button type="submit">Guardar</button>
@@ -247,9 +270,9 @@ const ListEmpleados = () => {
                 {"☆".repeat(5 - empleado.estrellas)}
               </div>
               <button className="fav-button">♡</button>
-              
+
               <div className="card-actions">
-                <button 
+                <button
                   className="edit-btn"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -261,7 +284,8 @@ const ListEmpleados = () => {
                 >
                   Editar
                 </button>
-                <button 
+
+                <button
                   className="delete-btn"
                   onClick={(e) => {
                     e.stopPropagation();
