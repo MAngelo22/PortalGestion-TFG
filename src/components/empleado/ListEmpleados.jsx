@@ -140,7 +140,7 @@ const ListEmpleados = () => {
 
   const handleUpdateEmpleado = (e) => {
     e.preventDefault();
-    actualizarEmpleado(empleadoEditar.id, empleadoEditar);
+    actualizarEmpleado(e.id, empleadoEditar);
     setShowForm(false);
     setEmpleadoEditar({
       nombre: '',
@@ -151,7 +151,6 @@ const ListEmpleados = () => {
       estrellas: 0,
       foto: ''
     });
-    setMostrarFormulario(false)
   };
 
   return (
@@ -313,6 +312,11 @@ const ListEmpleados = () => {
                       value={empleadoEditar.email}
                       onChange={(e) => setEmpleadoEditar({ ...empleadoEditar, email: e.target.value })}
                       required
+                    />
+                    <textarea
+                      placeholder="Descripción"
+                      value={empleadoEditar.descripcion}
+                      onChange={(e) => setEmpleadoEditar({ ...empleadoEditar, descripcion: e.target.value })}
                     />
                     <select
                       value={empleadoEditar.nivel}
