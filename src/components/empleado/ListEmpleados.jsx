@@ -13,8 +13,7 @@ const ListEmpleados = () => {
   const itemsPerPage = 8;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [mostrarFormulario, setMostrarFormulario] = useState(false)
-  const itemsPerPage = 8;
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [nuevoEmpleado, setNuevoEmpleado] = useState({
     nombre: '',
