@@ -7,7 +7,7 @@ import userImg from "../media/img/perfil.png";
 const Navbar = ({ onLogout }) => {
   return (
     <header className="header">
-      <img src={logo} alt="Logo" className="logo" />
+      <a href="/dashboard"><img src={logo} alt="Logo" className="logo" /></a>
       <div className="search-bar">
         <input type="text" placeholder="Buscar empleados..." />
         <button>🔍</button>
