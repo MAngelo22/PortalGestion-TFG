@@ -19,7 +19,7 @@ const ListProyectos = () => {
   const [showForm, setShowForm] = useState(false);
   const [nuevoProyecto, setNuevoProyecto] = useState({
     nombre: '',
-    tipoFoto: '',
+    // tipoFoto: '',
     foto: '',
     descripcion: '',
     nivelExperiencia: 'Principiante',
@@ -30,7 +30,7 @@ const ListProyectos = () => {
   });
   const [proyectoEditar, setProyectoEditar] = useState({
     nombre: '',
-    tipoFoto: '',
+    // tipoFoto: '',
     foto: '',
     descripcion: '',
     nivelExperiencia: 'Principiante',
@@ -52,30 +52,30 @@ const ListProyectos = () => {
   //   }
   // };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setNuevoProyecto({ ...nuevoProyecto, tipoFoto: reader.result.split(',')[0] });
-        setNuevoProyecto({ ...nuevoProyecto, foto: reader.result.split(',')[1] });
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  // const handleFileChange = (e) => {
+  //   const file = e.target.files[0];
+  //   if (file) {
+  //     const reader = new FileReader();
+  //     reader.onloadend = () => {
+  //       setNuevoProyecto({ ...nuevoProyecto, tipoFoto: reader.result.split(',')[0] });
+  //       setNuevoProyecto({ ...nuevoProyecto, foto: reader.result.split(',')[1] });
+  //     };
+  //     reader.readAsDataURL(file);
+  //   }
+  // };
 
   useEffect(() => {
     axios.get('http://localhost:8085/api/proyecto/all')
       .then(response => {
         console.log('Respuesta: ', response);
 
-        response.data.map(proyecto => {
-          if (proyecto.foto) {
-            const fotoBase64 = btoa(String.fromCharCode(...new Uint8Array(proyecto.foto)));
-            proyecto.foto = `${proyecto.tipoFoto ? proyecto.tipoFoto : 'data:image/jpg'},${fotoBase64}`;
-          }
-          return proyecto;
-        });
+        // response.data.map(proyecto => {
+        //   if (proyecto.foto) {
+        //     const fotoBase64 = btoa(String.fromCharCode(...new Uint8Array(proyecto.foto)));
+        //     proyecto.foto = `${proyecto.tipoFoto ? proyecto.tipoFoto : 'data:image/jpg'},${fotoBase64}`;
+        //   }
+        //   return proyecto;
+        // });
 
         setProyectos(response.data);
       })
@@ -165,7 +165,7 @@ const ListProyectos = () => {
     setShowForm(false);
     setNuevoProyecto({
       nombre: '',
-      tipoFoto: '',
+      // tipoFoto: '',
       foto: '',
       descripcion: '',
       nivelExperiencia: 'Principiante',
@@ -264,19 +264,16 @@ const ListProyectos = () => {
                       onChange={(e) => setNuevoProyecto({ ...nuevoProyecto, destacado: parseInt(e.target.value) })}
                     />
                     {/* <input
-                      type="number"
-                      min="1"
-                      max="5"
-                      value={nuevoProyecto.ultimaActualizacion}
-                      onChange={(e) => setNuevoProyecto({ ...nuevoProyecto, ultimaActualizacion: parseInt(e.target.value) })}
-                    /> */}
-                    <input
                       type="file"
                       accept="image/*"
                       placeholder="Carga una imagen"
                       onChange={handleFileChange}
-                    // value={nuevoProyecto.foto}
-                    // onChange={(e) => setNuevoProyecto({ ...nuevoProyecto, foto: e.target.value })}
+                    /> */}
+                    <input
+                      type="text"
+                      placeholder="URL de la foto"
+                      value={nuevoProyecto.foto}
+                      onChange={(e) => setNuevoProyecto({ ...nuevoProyecto, foto: e.target.value })}
                     />
                     <div className="form-buttons">
                       <button type="submit">Guardar</button>
@@ -331,9 +328,65 @@ const ListProyectos = () => {
                   Eliminar
                 </button>
               </div>
-
             </div>
           ))}
+          {mostrarFormulario && (
+            <div className="modal">
+              <div className="modal-content">
+                <form onSubmit={handleUpdateProyecto}>
+                  <input
+                    type="text"
+                    placeholder="Nombre"
+                    value={proyectoEditar.nombre}
+                    onChange={(e) => setProyectoEditar({ ...proyectoEditar, nombre: e.target.value })}
+                    required
+                  />
+                  <textarea
+                    placeholder="Requisitos Técnicos"
+                    value={proyectoEditar.requisitosTecnicos}
+                    onChange={(e) => setProyectoEditar({ ...proyectoEditar, requisitosTecnicos: e.target.value })}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Dificultad"
+                    value={proyectoEditar.dificultad}
+                    onChange={(e) => setProyectoEditar({ ...proyectoEditar, dificultad: e.target.value })}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Descripción"
+                    value={proyectoEditar.descripcion}
+                    onChange={(e) => setProyectoEditar({ ...proyectoEditar, descripcion: parseInt(e.target.value) })}
+                  />
+                  <input
+                    type="text"
+                    placeholder="URL de la foto"
+                    value={proyectoEditar.foto}
+                    onChange={(e) => setProyectoEditar({ ...proyectoEditar, foto: e.target.value })}
+                  />
+                  <select
+                    value={proyectoEditar.nivelExperiencia}
+                    onChange={(e) => setProyectoEditar({ ...proyectoEditar, nivelExperiencia: e.target.value })}
+                  >
+                    <option value="Principiante">Principiante</option>
+                    <option value="Intermedio">Intermedio</option>
+                    <option value="Experto">Experto</option>
+                  </select>
+                  <input
+                    type="number"
+                    min="1"
+                    max="5"
+                    value={proyectoEditar.destacado}
+                    onChange={(e) => setNuevoProyecto({ ...proyectoEditar, destacado: parseInt(e.target.value) })}
+                  />
+                  <div className="form-buttons">
+                    <button type="submit">Guardar</button>
+                    <button type="button" onClick={() => setMostrarFormulario(false)}>Cancelar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          )}
         </main>
 
         <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
