@@ -88,10 +88,10 @@ const ListEmpleados = () => {
     setError(null);
     try {
       const response = await axios.put(`http://localhost:8085/api/empleado/edit/${id}`, datosActualizados);
-      const nuevosEmpleados = empleados.map(emp =>
+      const empleadoEditar = empleados.map(emp =>
         emp.id === id ? response.data : emp
       );
-      setEmpleados(nuevosEmpleados);
+      setEmpleados(empleadoEditar);
       alert('Empleado actualizado exitosamente');
     } catch (error) {
       setError('Error al actualizar el empleado');
@@ -334,31 +334,31 @@ const ListEmpleados = () => {
                       type="text"
                       placeholder="Nombre"
                       value={empleadoEditar.nombre}
-                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, nombre: e.target.value })}
+                      onChange={(e) => setEmpleadoEditar({ ...empleadoEditar, nombre: e.target.value })}
                       required
                     />
                     <input
                       type="text"
                       placeholder="Apellidos"
                       value={empleadoEditar.apellidos}
-                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, apellidos: e.target.value })}
+                      onChange={(e) => setEmpleadoEditar({ ...empleadoEditar, apellidos: e.target.value })}
                       required
                     />
                     <input
                       type="text"
                       placeholder="Email"
                       value={empleadoEditar.email}
-                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, email: e.target.value })}
+                      onChange={(e) => setEmpleadoEditar({ ...empleadoEditar, email: e.target.value })}
                       required
                     />
                     <textarea
                       placeholder="Descripción"
                       value={empleadoEditar.descripcion}
-                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, descripcion: e.target.value })}
+                      onChange={(e) => setEmpleadoEditar({ ...empleadoEditar, descripcion: e.target.value })}
                     />
                     <select
                       value={empleadoEditar.nivel}
-                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, nivel: e.target.value })}
+                      onChange={(e) => setEmpleadoEditar({ ...empleadoEditar, nivel: e.target.value })}
                     >
                       <option value="Principiante">Principiante</option>
                       <option value="Intermedio">Intermedio</option>
@@ -369,13 +369,13 @@ const ListEmpleados = () => {
                       min="1"
                       max="5"
                       value={empleadoEditar.estrellas}
-                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, estrellas: parseInt(e.target.value) })}
+                      onChange={(e) => setEmpleadoEditar({ ...empleadoEditar, estrellas: parseInt(e.target.value) })}
                     />
                     <input
                       type="text"
                       placeholder="URL de la foto"
                       value={empleadoEditar.foto}
-                      onChange={(e) => setEmpleadoEditar({ ...nuevoEmpleado, foto: e.target.value })}
+                      onChange={(e) => setEmpleadoEditar({ ...empleadoEditar, foto: e.target.value })}
                     />
                     <div className="form-buttons">
                       <button type="submit">Guardar</button>
