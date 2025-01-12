@@ -35,13 +35,13 @@ INSERT INTO cursos (nombre, foto, descripcion, nivel_experiencia, temario, profe
 ('Curso de JavaScript', 'javascript.jpg', 'JavaScript Básico', 'Principiante', 'Variables, Funciones, DOM', 'Pedro Lopez', 'Teórico-práctico', 'Fácil', '2023-07-15 13:00:00', FALSE);
 
 -- Población inicial de Proyectos
-INSERT INTO proyectos (nombre, foto, descripcion, nivel_experiencia, requisitos_tecnicos, dificultad, ultima_actualizacion, destacado) VALUES
-('Proyecto Web', 'web.jpg', 'Desarrollo de una aplicación web', 'Intermedio', 'HTML, CSS, JavaScript', 'Media', '2023-10-20 12:00:00', TRUE),
-('Proyecto Data Science', 'data_science.jpg', 'Análisis de datos con Python', 'Avanzado', 'Python, Pandas, Numpy', 'Alta', '2023-09-05 09:00:00', FALSE),
-('Proyecto Mobile', 'mobile.jpg', 'Desarrollo de una app móvil', 'Intermedio', 'Kotlin, Swift', 'Media', '2023-11-11 16:00:00', TRUE),
-('Proyecto DevOps', 'devops.jpg', 'Implementación de CI/CD', 'Avanzado', 'Docker, Jenkins, Kubernetes', 'Alta', '2023-12-05 18:00:00', FALSE),
-('Proyecto AI', 'ai.jpg', 'Desarrollo de modelos de IA', 'Avanzado', 'Python, TensorFlow, Keras', 'Alta', '2023-08-01 14:00:00', TRUE),
-('Proyecto Blockchain', 'blockchain.jpg', 'Desarrollo con Blockchain', 'Intermedio', 'Solidity, Ethereum', 'Media', '2023-07-20 10:00:00', FALSE);
+INSERT INTO proyectos (nombre, tipo_foto, foto, descripcion, nivel_experiencia, requisitos_tecnicos, dificultad, ultima_actualizacion, destacado) VALUES
+('Proyecto Web', '', '', 'Desarrollo de una aplicación web', 'Intermedio', 'HTML, CSS, JavaScript', 'Media', '2023-10-20 12:00:00', TRUE),
+('Proyecto Data Science', '', '', 'Análisis de datos con Python', 'Avanzado', 'Python, Pandas, Numpy', 'Alta', '2023-09-05 09:00:00', FALSE),
+('Proyecto Mobile', '', '', 'Desarrollo de una app móvil', 'Intermedio', 'Kotlin, Swift', 'Media', '2023-11-11 16:00:00', TRUE),
+('Proyecto DevOps', '', '', 'Implementación de CI/CD', 'Avanzado', 'Docker, Jenkins, Kubernetes', 'Alta', '2023-12-05 18:00:00', FALSE),
+('Proyecto AI', '', '', 'Desarrollo de modelos de IA', 'Avanzado', 'Python, TensorFlow, Keras', 'Alta', '2023-08-01 14:00:00', TRUE),
+('Proyecto Blockchain', '', '', 'Desarrollo con Blockchain', 'Intermedio', 'Solidity, Ethereum', 'Media', '2023-07-20 10:00:00', FALSE);
 
 -- Población inicial de Asignaciones
 INSERT INTO asignaciones (empleado_id, proyecto_id) VALUES

@@ -60,17 +60,6 @@ const ListEmpleados = () => {
     setLoading(true);
     setError(null);
     try {
-      // const empleadoData = {
-      //   nombre: nuevoEmpleado.nombre,
-      //   apellidos: nuevoEmpleado.apellidos,
-      //   email: nuevoEmpleado.email,
-      //   descripcion: nuevoEmpleado.descripcion,
-      //   nivel: nuevoEmpleado.nivel,
-      //   estrellas: nuevoEmpleado.estrellas,
-      //   foto: nuevoEmpleado.foto
-      // };
-
-      // console.log('Empleado data: ', empleadoData);
 
       const response = await axios.post('http://localhost:8085/api/empleado/new', nuevoEmpleado);
       setEmpleados([...empleados, response.data]);

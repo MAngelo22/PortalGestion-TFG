@@ -15,8 +15,20 @@ const ListProyectos = () => {
   const itemsPerPage = 8;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [mostrarFormulario, setMostrarFormulario] = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [nuevoProyecto, setNuevoProyecto] = useState({
+    nombre: '',
+    tipoFoto: '',
+    foto: '',
+    descripcion: '',
+    nivelExperiencia: 'Principiante',
+    requisitosTecnicos: '',
+    dificultad: '',
+    ultimaActualizacion: new Date(),
+    destacado: 3
+  });
+  const [proyectoEditar, setProyectoEditar] = useState({
     nombre: '',
     tipoFoto: '',
     foto: '',
@@ -59,8 +71,8 @@ const ListProyectos = () => {
 
         response.data.map(proyecto => {
           if (proyecto.foto) {
-            const fotoBase64 = Buffer.from(proyecto.foto).toString('base64');
-            proyecto.foto = `data:${proyecto.tipoFoto},${fotoBase64}`;
+            const fotoBase64 = btoa(String.fromCharCode(...new Uint8Array(proyecto.foto)));
+            proyecto.foto = `${proyecto.tipoFoto ? proyecto.tipoFoto : 'data:image/jpg'},${fotoBase64}`;
           }
           return proyecto;
         });
@@ -80,17 +92,6 @@ const ListProyectos = () => {
     setLoading(true);
     setError(null);
     try {
-      // const proyectoData = {
-      //   nombre: nuevoProyecto.nombre,
-      //   apellidos: nuevoProyecto.apellidos,
-      //   email: nuevoProyecto.email,
-      //   descripcion: nuevoProyecto.descripcion,
-      //   nivel: nuevoProyecto.nivel,
-      //   estrellas: nuevoProyecto.estrellas,
-      //   foto: nuevoProyecto.foto
-      // };
-
-      // console.log('Proyecto data: ', proyectoData);
 
       const response = await axios.post('http://localhost:8085/api/proyecto/new', nuevoProyecto, {
         headers: {
@@ -107,8 +108,47 @@ const ListProyectos = () => {
     }
   };
 
-  const handleCardClick = (nombre) => {
-    navigate(`/proyecto/${encodeURIComponent(nombre)}`);
+  // UPDATE - Actualizar proyecto
+  const actualizarProyecto = async (id, datosActualizados) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const response = await axios.put(`http://localhost:8085/api/proyecto/edit/${id}`, datosActualizados);
+      const proyectoEditar = proyectos.map(proy =>
+        proy.id === id ? response.data : proy
+      );
+      setProyectos(proyectoEditar);
+      alert('Proyecto actualizado exitosamente');
+    } catch (error) {
+      setError('Error al actualizar el proyecto');
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // DELETE - Eliminar proyecto
+  const eliminarProyecto = async (id) => {
+    if (!window.confirm('¿Estás seguro de que deseas eliminar este proyecto?')) {
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+    try {
+      await axios.delete(`http://localhost:8085/api/proyecto/del/${id}`);
+      setProyectos(proyectos.filter(proy => proy.id !== id));
+      alert('Proyecto eliminado exitosamente');
+    } catch (error) {
+      setError('Error al eliminar el proyecto');
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCardClick = (id) => {
+    navigate(`/proyecto/${encodeURIComponent(id)}`);
   };
 
   const handlePageClick = (data) => {
@@ -125,6 +165,7 @@ const ListProyectos = () => {
     setShowForm(false);
     setNuevoProyecto({
       nombre: '',
+      tipoFoto: '',
       foto: '',
       descripcion: '',
       nivelExperiencia: 'Principiante',
@@ -133,6 +174,22 @@ const ListProyectos = () => {
       ultimaActualizacion: new Date(),
       destacado: 3
     });
+  };
+
+  const handleUpdateProyecto = (e) => {
+    e.preventDefault();
+    actualizarProyecto(proyectoEditar.id, proyectoEditar);
+    setShowForm(false);
+    setProyectoEditar({
+      nombre: '',
+      apellidos: '',
+      email: '',
+      descripcion: '',
+      nivel: '',
+      estrellas: 0,
+      foto: ''
+    });
+    setMostrarFormulario(false)
   };
 
   return (
@@ -232,9 +289,9 @@ const ListProyectos = () => {
           </div>
           {currentItems.map((proyecto, index) => (
             <div
-              key={proyecto.id}
+              key={index}
               className="card"
-              onClick={() => handleCardClick(proyecto.nombre)}
+              onClick={() => handleCardClick(proyecto.id)}
             >
               {proyecto.foto && <img src={proyecto.foto} alt={proyecto.nombre} />}
               <h4>{proyecto.nombre}</h4>
@@ -245,13 +302,43 @@ const ListProyectos = () => {
                 {"☆".repeat(5 - proyecto.estrellas)}
               </div>
               <button className="fav-button">♡</button>
+
+              <div className="card-actions">
+                <button
+                  className="edit-btn"
+                  onClick={(e) => {/*
+                    e.stopPropagation();
+                    actualizarProyecto(proyecto.id, {
+                      ...proyecto,
+                      nombre: prompt('Nueva descripción:', proyecto.nombre) || proyecto.nombre
+                    });*/
+                    e.stopPropagation();
+                    e.preventDefault();
+                    setProyectoEditar(proyecto)
+                    setMostrarFormulario(true)
+                  }}
+                >
+                  Editar
+                </button>
+
+                <button
+                  className="delete-btn"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    eliminarProyecto(proyecto.id);
+                  }}
+                >
+                  Eliminar
+                </button>
+              </div>
+
             </div>
           ))}
         </main>
 
         <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
       </div>
-      <Footer/>
+      {/* <Footer/> */}
     </div>
   );
 };
