@@ -1,63 +1,48 @@
-import React from "react";
-import "./estilos/estilo.css";
-import { useParams } from "react-router-dom";
-import Navbar from "../NavBar.jsx"; 
-import Footer from "../Footer.jsx";
-
-const empleados = [
-  {
-    nombre: "Javier Martínez",
-    descripcion: "Desarrollador web con experiencia en JavaScript y React.",
-    nivel: "Experto",
-    estrellas: 5,
-    foto: "/path/to/javier.jpg",
-    experiencia: "> 5 años",
-    conocimientos: ["JavaScript", "React", "HTML", "CSS"],
-    proyectos: ["Desarrollo de una aplicación de gestión de tareas"],
-  },
-  {
-    nombre: "Ana Torres",
-    descripcion: "Analista de datos con habilidades en Python y SQL.",
-    nivel: "Experto",
-    estrellas: 4,
-    foto: "/path/to/ana.jpg",
-    experiencia: "> 4 años",
-    conocimientos: ["Python", "SQL", "Power BI", "Pandas"],
-    proyectos: ["Implementación de un dashboard interactivo"],
-  },
-  {
-    nombre: "Lucas Gómez",
-    descripcion:
-      "Ingeniero de software especializado en inteligencia artificial.",
-    nivel: "Experto",
-    estrellas: 4,
-    foto: "/path/to/lucas.jpg",
-    experiencia: "> 6 años",
-    conocimientos: ["Machine Learning", "Python", "TensorFlow"],
-    proyectos: ["Sistema de recomendación para e-commerce"],
-  },
-];
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import Navbar from '../NavBar';
 
 const DetalleEmpleado = () => {
-  const { nombre } = useParams();
-  const empleado = empleados.find((e) => e.nombre === decodeURIComponent(nombre));
+  const { id } = useParams();
+  const [empleado, setEmpleado] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  if (!empleado) {
-    return <p>Empleado no encontrado</p>;
-  }
+  useEffect(() => {
+    const obtenerEmpleado = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8085/api/empleado/${id}`);
+        setEmpleado(response.data);
+      } catch (error) {
+        setError('Error al cargar los datos del empleado');
+        console.error('Error:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    obtenerEmpleado();
+  }, [id]);
+
+  if (loading) return <div>Cargando...</div>;
+  if (error) return <div>{error}</div>;
+  if (!empleado) return <div>No se encontró el empleado</div>;
 
   return (
     <div>
       <Navbar />
-      <div className="detalle-container">
-        <img src={empleado.foto} alt={empleado.nombre} className="detalle-foto" />
+      <div className="detalle-empleado">
+        <img src={empleado.foto} alt={empleado.nombre} />
         <h2>{empleado.nombre}</h2>
         <p>{empleado.descripcion}</p>
-        <p><strong>Experiencia:</strong> {empleado.experiencia}</p>
-        <p><strong>Conocimientos:</strong> {empleado.conocimientos.join(", ")}</p>
-        <p><strong>Proyectos destacados:</strong> {empleado.proyectos.join(", ")}</p>
+        <div className="nivel">Nivel: {empleado.nivel}</div>
+        <div className="rating">
+          {"★".repeat(empleado.estrellas)}
+          {"☆".repeat(5 - empleado.estrellas)}
+        </div>
+        {/* Añade más detalles según tu modelo de datos */}
       </div>
-      <Footer />
     </div>
   );
 };
