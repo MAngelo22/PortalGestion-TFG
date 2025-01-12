@@ -4,11 +4,13 @@ import Navbar from "../NavBar.jsx";
 import "./ListEmpleados.css";
 import Paginacion from "../utils/Paginacion";
 import axios from "axios";
+import Filter from "../utils/Filter.jsx";
 
 const ListEmpleados = () => {
   const navigate = useNavigate();
   const [empleados, setEmpleados] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const itemsPerPage = 8;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [mostrarFormulario, setMostrarFormulario] = useState(false)
@@ -181,35 +183,7 @@ const ListEmpleados = () => {
       )}
 
       <div className="empleados-container">
-        <aside className="filters">
-          <h3>Sector</h3>
-          <label>
-            <input type="checkbox" /> Banca (124)
-          </label>
-          <label>
-            <input type="checkbox" /> Industria (378)
-          </label>
-          <h3>Experiencia</h3>
-          <label>
-            <input type="checkbox" /> Principiante (124)
-          </label>
-          <label>
-            <input type="checkbox" /> Intermedio (318)
-          </label>
-          <label>
-            <input type="checkbox" /> Experto (278)
-          </label>
-          <h3>Temática</h3>
-          <label>
-            <input type="checkbox" /> Desarrollo web (124)
-          </label>
-          <label>
-            <input type="checkbox" /> JavaScript (378)
-          </label>
-          <label>
-            <input type="checkbox" /> WordPress (278)
-          </label>
-        </aside>
+        <Filter />
 
         <main className="cards-container">
           <div className="add-employee-section">
@@ -226,7 +200,7 @@ const ListEmpleados = () => {
                   <form onSubmit={handleSubmitEmpleado}>
                     <input
                       type="text"
-                      placeholder="Nombre"
+                      placeholder="Nombre Empleado"
                       value={nuevoEmpleado.nombre}
                       onChange={(e) => setNuevoEmpleado({ ...nuevoEmpleado, nombre: e.target.value })}
                       required
