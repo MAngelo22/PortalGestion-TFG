@@ -260,7 +260,7 @@ const ListEmpleados = () => {
             )}
           </div>
 
-          {currentItems.map((empleado, index) => (
+          {currentItems && currentItems.map((empleado, index) => (
             <div
               key={index}
               className="card"

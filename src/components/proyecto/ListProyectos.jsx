@@ -285,7 +285,7 @@ const ListProyectos = () => {
               </div>
             )}
           </div>
-          {currentItems.map((proyecto, index) => (
+            {currentItems && currentItems.map((proyecto, index) => (
             <div
               key={index}
               className="card"

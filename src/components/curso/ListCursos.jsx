@@ -277,7 +277,7 @@ const ListCursos = () => {
               </div>
             )}
           </div>
-          {currentItems.map((curso, index) => (
+          {currentItems && currentItems.map((curso, index) => (
             <div
               key={index}
               className="card"
