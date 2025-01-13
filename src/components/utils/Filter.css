@@ -1,0 +1,25 @@
+  .filters {
+    float: left;
+    width: 20%;
+    border-right: 2px solid #eeeeee;
+    padding-right: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f8f8f8;
+  }
+  
+  .filters h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .filters label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .filters input {
+    margin-right: 10px;
+  }

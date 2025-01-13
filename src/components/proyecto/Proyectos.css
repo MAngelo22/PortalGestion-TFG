@@ -63,6 +63,31 @@ body {
     object-fit: cover;
   }
   
+  /* Filtros */
+  .filters {
+    float: left;
+    width: 20%;
+    border-right: 2px solid #eeeeee;
+    padding-right: 20px;
+  }
+  
+  .filters h3 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .filters label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .filters input {
+    margin-right: 10px;
+  }
+  
   /* Contenedor de tarjetas */
   .cards-container {
     display: grid;
