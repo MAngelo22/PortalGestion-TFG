@@ -12,7 +12,7 @@ const ListProyectos = () => {
   const navigate = useNavigate();
   const [proyectos, setProyectos] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
-  const itemsPerPage = 8;
+  const itemsPerPage = 6;
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [mostrarFormulario, setMostrarFormulario] = useState(false);
@@ -193,7 +193,7 @@ const ListProyectos = () => {
   };
 
   return (
-    <div>
+    <>
       <Navbar />
 
       {loading && (
@@ -208,7 +208,7 @@ const ListProyectos = () => {
         </div>
       )}
 
-      <div className="proyectos-container">
+      <div className="body-container">
         <Filter />
 
         <main className="cards-container">
@@ -303,12 +303,7 @@ const ListProyectos = () => {
               <div className="card-actions">
                 <button
                   className="edit-btn"
-                  onClick={(e) => {/*
-                    e.stopPropagation();
-                    actualizarProyecto(proyecto.id, {
-                      ...proyecto,
-                      nombre: prompt('Nueva descripción:', proyecto.nombre) || proyecto.nombre
-                    });*/
+                  onClick={(e) => {
                     e.stopPropagation();
                     e.preventDefault();
                     setProyectoEditar(proyecto)
@@ -388,11 +383,10 @@ const ListProyectos = () => {
             </div>
           )}
         </main>
-
-        <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
       </div>
-      {/* <Footer/> */}
-    </div>
+      <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
+      {/* <Footer /> */}
+    </>
   );
 };
 

@@ -8,7 +8,7 @@ body {
   display: block;
   justify-content: center;
   align-items: center;
-  height: auto; /* Cambiar de 100vh a auto */
+  height: auto; 
 }
 
 
@@ -18,23 +18,23 @@ body {
   flex-direction: column;
   background-color: #ffffff;
   padding: 20px;
-  min-height: 100vh;  /* Asegura que ocupe al menos el alto de la pantalla */
-  justify-content: flex-start; /* Alinea el contenido desde arriba */
-  margin-top: 80px; /* Evita que se solape con el header */
+  min-height: 100vh;  
+  justify-content: flex-start; 
+  margin-top: 80px; 
 }
 .main-container-logo{
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffffff; /* Fondo blanco */
+  background-color: #ffffff; 
   padding: 20px;
-  min-height: 100vh; /* Asegura que el contenedor ocupe toda la pantalla */
-  justify-content: center; /* Centra verticalmente los elementos */
+  min-height: 100vh; 
+  justify-content: center; 
 }
 
-.empleados-container {
+.body-container {
   display: flex;
-  margin: 120px auto 0; /* Centrado y margen superior para no solaparse con el navbar */
+  margin: 2% auto 0;  
   padding: 20px;
   background-color: #f8f8f8;
   border-radius: 8px;
