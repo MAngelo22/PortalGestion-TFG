@@ -33,7 +33,8 @@ const MiPerfil = () => {
 
     setError(null);
     try {
-      const response = await axios.put(`http://localhost:8085/api/usuario/edit/${formValues.id}`, formValues);
+      const response = await axios.put(`http://localhost:8085/api/usuario/edit/${formValues.id}`, formValues,
+      { withCredentials: true });
       // const usuarioEditar = usuarios.map(usu =>
       //   usu.id === id ? response.data : usu
       // );

@@ -44,7 +44,9 @@ const ListCursos = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:8085/api/curso/all');
+      const response = await axios.get('http://localhost:8085/api/curso/all', 
+      { withCredentials: true }
+      );
       setCursos(response.data);
     } catch (error) {
       setError('Error al obtener los cursos');
@@ -66,7 +68,9 @@ const ListCursos = () => {
     setError(null);
     try {
 
-      const response = await axios.post('http://localhost:8085/api/curso/new', nuevoCurso);
+      const response = await axios.post('http://localhost:8085/api/curso/new', nuevoCurso,
+      { withCredentials: true }
+      );
       setCursos([...cursos, response.data]);
       alert('Curso creado exitosamente');
     } catch (error) {
@@ -82,7 +86,8 @@ const ListCursos = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.put(`http://localhost:8085/api/curso/edit/${id}`, datosActualizados);
+      const response = await axios.put(`http://localhost:8085/api/curso/edit/${id}`, datosActualizados,
+      { withCredentials: true });
       const cursoEditar = cursos.map(curs =>
         curs.id === id ? response.data : curs
       );
@@ -98,14 +103,16 @@ const ListCursos = () => {
 
   // DELETE - Eliminar curso
   const eliminarCurso = async (id) => {
-    if (!window.confirm('¿Estás seguro de que deseas eliminar este curso?')) {
+    if (!window.confirm('¿Estás seguro de que deseas eliminar este curso?',
+    { withCredentials: true })) {
       return;
     }
 
     setLoading(true);
     setError(null);
     try {
-      await axios.delete(`http://localhost:8085/api/curso/del/${id}`);
+      await axios.delete(`http://localhost:8085/api/curso/del/${id}`,
+      { withCredentials: true });
       setCursos(cursos.filter(emp => emp.id !== id));
       alert('Curso eliminado exitosamente');
     } catch (error) {

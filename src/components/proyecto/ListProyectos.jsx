@@ -65,7 +65,8 @@ const ListProyectos = () => {
   // };
 
   useEffect(() => {
-    axios.get('http://localhost:8085/api/proyecto/all')
+    axios.get('http://localhost:8085/api/proyecto/all',
+    { withCredentials: true })
       .then(response => {
         console.log('Respuesta: ', response);
 
@@ -93,11 +94,9 @@ const ListProyectos = () => {
     setError(null);
     try {
 
-      const response = await axios.post('http://localhost:8085/api/proyecto/new', nuevoProyecto, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
+      const response = await axios.post('http://localhost:8085/api/proyecto/new', nuevoProyecto,
+      { withCredentials: true }
+      );
       setProyectos([...proyectos, response.data]);
       alert('Proyecto creado exitosamente');
     } catch (error) {
@@ -113,7 +112,8 @@ const ListProyectos = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.put(`http://localhost:8085/api/proyecto/edit/${id}`, datosActualizados);
+      const response = await axios.put(`http://localhost:8085/api/proyecto/edit/${id}`, datosActualizados,
+      { withCredentials: true });
       const proyectoEditar = proyectos.map(proy =>
         proy.id === id ? response.data : proy
       );
@@ -136,7 +136,8 @@ const ListProyectos = () => {
     setLoading(true);
     setError(null);
     try {
-      await axios.delete(`http://localhost:8085/api/proyecto/del/${id}`);
+      await axios.delete(`http://localhost:8085/api/proyecto/del/${id}`,
+      { withCredentials: true });
       setProyectos(proyectos.filter(proy => proy.id !== id));
       alert('Proyecto eliminado exitosamente');
     } catch (error) {

@@ -42,7 +42,8 @@ const ListEmpleados = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:8085/api/empleado/all');
+      const response = await axios.get('http://localhost:8085/api/empleado/all',
+      { withCredentials: true });
       setEmpleados(response.data);
     } catch (error) {
       setError('Error al obtener los empleados');
@@ -64,7 +65,8 @@ const ListEmpleados = () => {
     setError(null);
     try {
 
-      const response = await axios.post('http://localhost:8085/api/empleado/new', nuevoEmpleado);
+      const response = await axios.post('http://localhost:8085/api/empleado/new', nuevoEmpleado,
+      { withCredentials: true });
       setEmpleados([...empleados, response.data]);
       alert('Empleado creado exitosamente');
     } catch (error) {
@@ -80,7 +82,8 @@ const ListEmpleados = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.put(`http://localhost:8085/api/empleado/edit/${id}`, datosActualizados);
+      const response = await axios.put(`http://localhost:8085/api/empleado/edit/${id}`, datosActualizados,
+      { withCredentials: true });
       const empleadoEditar = empleados.map(emp =>
         emp.id === id ? response.data : emp
       );
@@ -103,7 +106,8 @@ const ListEmpleados = () => {
     setLoading(true);
     setError(null);
     try {
-      await axios.delete(`http://localhost:8085/api/empleado/del/${id}`);
+      await axios.delete(`http://localhost:8085/api/empleado/del/${id}`,
+      { withCredentials: true });
       setEmpleados(empleados.filter(emp => emp.id !== id));
       alert('Empleado eliminado exitosamente');
     } catch (error) {

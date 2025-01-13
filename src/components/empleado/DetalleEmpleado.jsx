@@ -12,7 +12,8 @@ const DetalleEmpleado = () => {
   useEffect(() => {
     const obtenerEmpleado = async () => {
       try {
-        const response = await axios.get(`http://localhost:8085/api/empleado/${id}`);
+        const response = await axios.get(`http://localhost:8085/api/empleado/${id}`,
+        { withCredentials: true });
         setEmpleado(response.data);
       } catch (error) {
         setError('Error al cargar los datos del empleado');
