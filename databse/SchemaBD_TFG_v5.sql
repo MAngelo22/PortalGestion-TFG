@@ -79,15 +79,24 @@ CREATE TABLE solicitudes (
     FOREIGN KEY (proyecto_id) REFERENCES proyectos(id)
 );
 
--- Tabla para relacionar Usuarios con Cursos y Proyectos realizados
-CREATE TABLE usuario_actividades (
+-- Tabla para relacionar Usuarios con Cursos realizados
+CREATE TABLE usuario_cursos (
     id INT AUTO_INCREMENT PRIMARY KEY,
     usuario_id INT NOT NULL,
     actividad_id INT NOT NULL,
-    tipo_actividad ENUM('curso', 'proyecto') NOT NULL,
-    estado ENUM('en_progreso', 'finalizado') NOT NULL,
+    estado VARCHAR(20) NOT NULL,
     FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
-    FOREIGN KEY (actividad_id) REFERENCES cursos(id) -- Relacionando correctamente la tabla cursos
+    FOREIGN KEY (actividad_id) REFERENCES cursos(id)
+);
+
+-- Tabla para relacionar Usuarios con Proyectos realizados
+CREATE TABLE usuario_proyectos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    actividad_id INT NOT NULL,
+    estado VARCHAR(20) NOT NULL,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (actividad_id) REFERENCES proyectos(id)
 );
 
 CREATE TABLE usuarios_roles (

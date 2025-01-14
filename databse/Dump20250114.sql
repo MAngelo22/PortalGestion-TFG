@@ -199,34 +199,63 @@ INSERT INTO `solicitudes` VALUES (1,1,1,'2023-12-10 07:00:00'),(2,2,2,'2023-11-2
 UNLOCK TABLES;
 
 --
--- Table structure for table `usuario_actividades`
+-- Table structure for table `usuario_cursos`
 --
 
-DROP TABLE IF EXISTS `usuario_actividades`;
+DROP TABLE IF EXISTS `usuario_cursos`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usuario_actividades` (
+CREATE TABLE `usuario_cursos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `usuario_id` int(11) NOT NULL,
   `actividad_id` int(11) NOT NULL,
-  `tipo_actividad` enum('curso','proyecto') NOT NULL,
-  `estado` enum('en_progreso','finalizado') NOT NULL,
+  `estado` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `usuario_id` (`usuario_id`),
   KEY `actividad_id` (`actividad_id`),
-  CONSTRAINT `usuario_actividades_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
-  CONSTRAINT `usuario_actividades_ibfk_2` FOREIGN KEY (`actividad_id`) REFERENCES `cursos` (`id`)
+  CONSTRAINT `usuario_cursos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `usuario_cursos_ibfk_2` FOREIGN KEY (`actividad_id`) REFERENCES `cursos` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usuario_actividades`
+-- Dumping data for table `usuario_cursos`
 --
 
-LOCK TABLES `usuario_actividades` WRITE;
-/*!40000 ALTER TABLE `usuario_actividades` DISABLE KEYS */;
-INSERT INTO `usuario_actividades` VALUES (1,1,1,'curso','finalizado'),(2,2,2,'curso','en_progreso'),(3,3,1,'proyecto','finalizado'),(4,4,3,'curso','finalizado'),(5,5,4,'proyecto','en_progreso'),(6,6,5,'proyecto','en_progreso');
-/*!40000 ALTER TABLE `usuario_actividades` ENABLE KEYS */;
+LOCK TABLES `usuario_cursos` WRITE;
+/*!40000 ALTER TABLE `usuario_cursos` DISABLE KEYS */;
+INSERT INTO `usuario_cursos` VALUES (1,1,1,'finalizado'),(2,2,2,'en_progreso'),(3,3,1,'finalizado'),(4,4,3,'finalizado'),(5,5,4,'en_progreso'),(6,6,5,'en_progreso');
+/*!40000 ALTER TABLE `usuario_cursos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `usuario_proyectos`
+--
+
+DROP TABLE IF EXISTS `usuario_proyectos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `usuario_proyectos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `usuario_id` int(11) NOT NULL,
+  `actividad_id` int(11) NOT NULL,
+  `estado` varchar(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `usuario_id` (`usuario_id`),
+  KEY `actividad_id` (`actividad_id`),
+  CONSTRAINT `usuario_proyectos_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `usuario_proyectos_ibfk_2` FOREIGN KEY (`actividad_id`) REFERENCES `proyectos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `usuario_proyectos`
+--
+
+LOCK TABLES `usuario_proyectos` WRITE;
+/*!40000 ALTER TABLE `usuario_proyectos` DISABLE KEYS */;
+INSERT INTO `usuario_proyectos` VALUES (1,1,1,'finalizado'),(2,2,2,'en_progreso'),(3,3,1,'finalizado'),(4,4,3,'finalizado'),(5,5,4,'en_progreso'),(6,6,5,'en_progreso');
+/*!40000 ALTER TABLE `usuario_proyectos` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -297,4 +326,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-13 23:03:15
+-- Dump completed on 2025-01-14  3:58:21

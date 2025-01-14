@@ -18,6 +18,7 @@ import MisProyectos from "./components//misdatos/MisProyectos.jsx"; // Importa e
 import MisCursos from "./components//misdatos/MisCursos.jsx"; // Importa el componente de MisCursos
 import MiPerfil from "./components/misdatos/MiPerfil"; // Ruta del componente MiPerfil
 import Contactanos from "./components/Contactanos.jsx"; // Importa la página de contacto
+import GrupoPestañas from "./components/misdatos/GrupoPestañas.jsx";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
@@ -44,6 +45,7 @@ const App = () => {
         <Route path="/catCur" element={<CatCursos />} />
         <Route path="/catPro" element={<CatProyectos />} />
         <Route path="/miperfil" element={<MiPerfil />} />
+        <Route path="/mispestañas" element={<GrupoPestañas />} />
         <Route path="/miscursos" element={<MisCursos />} />
         <Route path="/misProyectos" element={<MisProyectos />} />
         <Route path="/contactanos" element={<Contactanos />} />

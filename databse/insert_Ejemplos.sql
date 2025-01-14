@@ -71,13 +71,22 @@ INSERT INTO solicitudes (usuario_id, proyecto_id, fecha_solicitud) VALUES
 (6, 5, '2023-07-20 15:00:00');
 
 -- Población inicial de Usuario Actividades
-INSERT INTO usuario_actividades (usuario_id, actividad_id, tipo_actividad, estado) VALUES
-(1, 1, 'curso', 'finalizado'),
-(2, 2, 'curso', 'en_progreso'),
-(3, 1, 'proyecto', 'finalizado'),
-(4, 3, 'curso', 'finalizado'),
-(5, 4, 'proyecto', 'en_progreso'),
-(6, 5, 'proyecto', 'en_progreso');
+INSERT INTO usuario_cursos (usuario_id, actividad_id, estado) VALUES
+(1, 1, 'finalizado'),
+(2, 2, 'en_progreso'),
+(3, 1, 'finalizado'),
+(4, 3, 'finalizado'),
+(5, 4, 'en_progreso'),
+(6, 5, 'en_progreso');
+
+-- Población inicial de Usuario Actividades
+INSERT INTO usuario_proyectos (usuario_id, actividad_id, estado) VALUES
+(1, 1, 'finalizado'),
+(2, 2, 'en_progreso'),
+(3, 1, 'finalizado'),
+(4, 3, 'finalizado'),
+(5, 4, 'en_progreso'),
+(6, 5, 'en_progreso');
 
 
 -- Inserta relaciones entre usuarios y roles
