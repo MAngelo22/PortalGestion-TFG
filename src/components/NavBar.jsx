@@ -3,6 +3,7 @@ import { Link } from "react-router-dom"; // Asegúrate de importar Link
 import "./estilos/NavBar.css";
 import logo from "../media/img/porrtalgestion_logo.png";
 import userImg from "../media/img/perfil.png";
+import Logout from "./Logout";
 
 const Navbar = ({ onLogout }) => {
   return (
@@ -23,10 +24,11 @@ const Navbar = ({ onLogout }) => {
         <Link to="/miperfil">
           <img src={userImg} alt="Usuario" className="user-img" />
         </Link>
-        <button className="logout-button" onClick={onLogout}>
-          Cerrar sesión
-        </button>
       </div>
+      <Logout />
+      {/* <div className="tooltip">
+        <span className="tooltiptext">Cerrar sesión</span>
+      </div> */}
     </header>
   );
 };

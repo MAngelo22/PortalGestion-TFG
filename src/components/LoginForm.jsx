@@ -4,7 +4,6 @@ import logo from "../media/img/porrtalgestion_logo.png"; // Importa el logo dire
 import "./estilos/estilo.css";
 
 const LoginForm = ({ onLoginSuccess }) => {
-  // const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -66,6 +65,7 @@ const LoginForm = ({ onLoginSuccess }) => {
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Ingrese su usuario"
               className="input-field"
+              required
             />
           </div>
           <div className="form-group">
@@ -77,13 +77,14 @@ const LoginForm = ({ onLoginSuccess }) => {
               onChange={(e) => setPassword(e.target.value)}
               placeholder="Ingrese su contraseña"
               className="input-field"
+              required
             />
           </div>
           <button type="submit" className="submit-button">
             Iniciar Sesion
           </button>
         </form>
-        <p className="message">{message}</p>
+        {message && <p className="message">{message}</p>}
       </div>
     </div>
   );
