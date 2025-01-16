@@ -43,7 +43,7 @@ const ListEmpleados = () => {
     setError(null);
     try {
       const response = await axios.get('http://localhost:8085/api/empleado/all',
-      { withCredentials: true });
+        { withCredentials: true });
       setEmpleados(response.data);
     } catch (error) {
       setError('Error al obtener los empleados');
@@ -66,7 +66,7 @@ const ListEmpleados = () => {
     try {
 
       const response = await axios.post('http://localhost:8085/api/empleado/new', nuevoEmpleado,
-      { withCredentials: true });
+        { withCredentials: true });
       setEmpleados([...empleados, response.data]);
       alert('Empleado creado exitosamente');
     } catch (error) {
@@ -83,7 +83,7 @@ const ListEmpleados = () => {
     setError(null);
     try {
       const response = await axios.put(`http://localhost:8085/api/empleado/edit/${id}`, datosActualizados,
-      { withCredentials: true });
+        { withCredentials: true });
       const empleadoEditar = empleados.map(emp =>
         emp.id === id ? response.data : emp
       );
@@ -107,7 +107,7 @@ const ListEmpleados = () => {
     setError(null);
     try {
       await axios.delete(`http://localhost:8085/api/empleado/del/${id}`,
-      { withCredentials: true });
+        { withCredentials: true });
       setEmpleados(empleados.filter(emp => emp.id !== id));
       alert('Empleado eliminado exitosamente');
     } catch (error) {
@@ -118,8 +118,8 @@ const ListEmpleados = () => {
     }
   };
 
-  const handleCardClick = (id) => {
-    navigate(`/empleado/${id}`);
+  const handleCardClick = (empleado) => {
+    navigate(`/empleado/${empleado.id}`, { state: { empleado } });
   };
 
   const handlePageClick = (data) => {
@@ -264,7 +264,7 @@ const ListEmpleados = () => {
             <div
               key={index}
               className="card"
-              onClick={() => handleCardClick(empleado.id)}
+              onClick={() => handleCardClick(empleado)}
             >
               <img src={empleado.foto} alt={empleado.nombre} />
               <h4>{empleado.nombre}</h4>

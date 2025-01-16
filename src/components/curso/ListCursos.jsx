@@ -44,8 +44,8 @@ const ListCursos = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:8085/api/curso/all', 
-      { withCredentials: true }
+      const response = await axios.get('http://localhost:8085/api/curso/all',
+        { withCredentials: true }
       );
       setCursos(response.data);
     } catch (error) {
@@ -69,7 +69,7 @@ const ListCursos = () => {
     try {
 
       const response = await axios.post('http://localhost:8085/api/curso/new', nuevoCurso,
-      { withCredentials: true }
+        { withCredentials: true }
       );
       setCursos([...cursos, response.data]);
       alert('Curso creado exitosamente');
@@ -87,7 +87,7 @@ const ListCursos = () => {
     setError(null);
     try {
       const response = await axios.put(`http://localhost:8085/api/curso/edit/${id}`, datosActualizados,
-      { withCredentials: true });
+        { withCredentials: true });
       const cursoEditar = cursos.map(curs =>
         curs.id === id ? response.data : curs
       );
@@ -104,7 +104,7 @@ const ListCursos = () => {
   // DELETE - Eliminar curso
   const eliminarCurso = async (id) => {
     if (!window.confirm('¿Estás seguro de que deseas eliminar este curso?',
-    { withCredentials: true })) {
+      { withCredentials: true })) {
       return;
     }
 
@@ -112,7 +112,7 @@ const ListCursos = () => {
     setError(null);
     try {
       await axios.delete(`http://localhost:8085/api/curso/del/${id}`,
-      { withCredentials: true });
+        { withCredentials: true });
       setCursos(cursos.filter(emp => emp.id !== id));
       alert('Curso eliminado exitosamente');
     } catch (error) {
@@ -123,9 +123,13 @@ const ListCursos = () => {
     }
   };
 
-  const handleCardClick = (nombre) => {
-    navigate(`/curso/${encodeURIComponent(nombre)}`);
+  const handleCardClick = (curso) => {
+    navigate(`/curso/${curso.id}`, { state: { curso } });
   };
+
+  // const handleCardClick = (nombre) => {
+  //   navigate(`/curso/${encodeURIComponent(nombre)}`);
+  // };
 
   const handlePageClick = (data) => {
     setCurrentPage(data.selected);
@@ -281,7 +285,8 @@ const ListCursos = () => {
             <div
               key={index}
               className="card"
-              onClick={() => handleCardClick(curso.nombre)}
+              onClick={() => handleCardClick(curso)}
+            // onClick={() => handleCardClick(curso.nombre)}
             >
               <img src={curso.foto} alt={curso.nombre} />
               <h4>{curso.nombre}</h4>

@@ -66,7 +66,7 @@ const ListProyectos = () => {
 
   useEffect(() => {
     axios.get('http://localhost:8085/api/proyecto/all',
-    { withCredentials: true })
+      { withCredentials: true })
       .then(response => {
         console.log('Respuesta: ', response);
 
@@ -95,7 +95,7 @@ const ListProyectos = () => {
     try {
 
       const response = await axios.post('http://localhost:8085/api/proyecto/new', nuevoProyecto,
-      { withCredentials: true }
+        { withCredentials: true }
       );
       setProyectos([...proyectos, response.data]);
       alert('Proyecto creado exitosamente');
@@ -113,7 +113,7 @@ const ListProyectos = () => {
     setError(null);
     try {
       const response = await axios.put(`http://localhost:8085/api/proyecto/edit/${id}`, datosActualizados,
-      { withCredentials: true });
+        { withCredentials: true });
       const proyectoEditar = proyectos.map(proy =>
         proy.id === id ? response.data : proy
       );
@@ -137,7 +137,7 @@ const ListProyectos = () => {
     setError(null);
     try {
       await axios.delete(`http://localhost:8085/api/proyecto/del/${id}`,
-      { withCredentials: true });
+        { withCredentials: true });
       setProyectos(proyectos.filter(proy => proy.id !== id));
       alert('Proyecto eliminado exitosamente');
     } catch (error) {
@@ -148,8 +148,8 @@ const ListProyectos = () => {
     }
   };
 
-  const handleCardClick = (id) => {
-    navigate(`/proyecto/${encodeURIComponent(id)}`);
+  const handleCardClick = (proyecto) => {
+    navigate(`/proyecto/${proyecto.id}`, { state: { proyecto } });
   };
 
   const handlePageClick = (data) => {
@@ -285,11 +285,11 @@ const ListProyectos = () => {
               </div>
             )}
           </div>
-            {currentItems && currentItems.map((proyecto, index) => (
+          {currentItems && currentItems.map((proyecto, index) => (
             <div
               key={index}
               className="card"
-              onClick={() => handleCardClick(proyecto.id)}
+              onClick={() => handleCardClick(proyecto)}
             >
               {proyecto.foto && <img src={proyecto.foto} alt={proyecto.nombre} />}
               <h4>{proyecto.nombre}</h4>
