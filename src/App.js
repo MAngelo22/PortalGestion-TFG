@@ -9,6 +9,8 @@ import LoginForm from "./components/LoginForm.jsx"; // Ruta del login
 import Dashboard from "./components/Catalogo.jsx"; // Ruta del dashboard
 import Empleados from "./components/empleado/ListEmpleados.jsx"; // Nueva página de empleados
 import DetalleEmpleado from './components/empleado/DetalleEmpleado';
+import DetalleProyecto from './components/proyecto/DetalleProyecto';
+import DetalleCurso from './components/curso/DetalleCurso';
 import Proyectos from "./components/proyecto/ListProyectos.jsx"; // Nueva página de proyectos
 import CatProyectos from "./components/proyecto/CatalogoProyectos.jsx"; // Nueva página de Catalogos de proyectos
 import Navbar from "./components/NavBar.jsx"; // Barra de navegación
@@ -41,6 +43,8 @@ const App = () => {
             )
           }
         />+
+        <Route path="/proyecto/:id" element={<DetalleProyecto />} />
+        <Route path="/curso/:id" element={<DetalleCurso />} />
         <Route path="/empleado/:id" element={<DetalleEmpleado />} />
         <Route path="/catCur" element={<CatCursos />} />
         <Route path="/catPro" element={<CatProyectos />} />

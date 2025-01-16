@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import "./estilos/estilo.css";
-import { useLocation, useParams } from "react-router-dom";
-import Navbar from "../NavBar.jsx";
-import Footer from "../Footer.jsx";
+import { useLocation } from "react-router-dom";
+import "../estilos/estilo.css";
+import { useState } from "react";
+import Navbar from "../NavBar";
+import Footer from "../Footer";
 
 const cursos = [
   {
@@ -27,7 +27,6 @@ const DetalleCurso = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-
   if (!curso) {
     return <p>Curso no encontrado</p>;
   }
@@ -35,20 +34,30 @@ const DetalleCurso = () => {
   return (
     <div>
       <Navbar />
-      <div className="detalle-container">
-        <img src={curso.foto} alt={curso.nombre} className="detalle-foto" />
-        <h2>{curso.nombre}</h2>
-        <p>{curso.descripcion}</p>
-        <p>
-          <strong>Experiencia:</strong> {curso.experiencia}
-        </p>
-        <p>
-          <strong>Conocimientos:</strong> {curso.conocimientos.join(", ")}
-        </p>
-        <p>
-          <strong>Proyectos destacados:</strong> {curso.proyectos.join(", ")}
-        </p>
-      </div>
+      {curso && (
+        <div
+          className="detalle-container"
+          style={{
+            justifyContent: "center",
+            marginTop: "10%",
+            marginLeft: "10%",
+          }}
+        >
+          <img src={curso.foto} alt={curso.nombre} className="detalle-foto" />
+          <h2>{curso.nombre}</h2>
+          <p>{curso.descripcion}</p>
+          <p>
+            <strong>Experiencia:</strong> {curso.experiencia}
+          </p>
+          <p>
+            <strong>Conocimientos:</strong> {curso.conocimientos?.join(", ")}
+          </p>
+          <p>
+            <strong>Proyectos destacados:</strong> {curso.proyectos?.join(", ")}
+          </p>
+        </div>
+      )}
+
       <Footer />
     </div>
   );

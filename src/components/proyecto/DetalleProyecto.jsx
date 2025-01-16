@@ -36,7 +36,7 @@ const DetalleProyecto = () => {
     <div>
       <Navbar />
       {proyecto &&
-        <div className="detalle-proyecto">
+        <div className="detalle-proyecto" style={{ justifyContent: 'center', marginTop: '10%', marginLeft: '10%' }}>
           <img src={proyecto.foto} alt={proyecto.nombre} />
           <h2>{proyecto.nombre}</h2>
           <p>{proyecto.descripcion}</p>

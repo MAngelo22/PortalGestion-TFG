@@ -67,14 +67,14 @@
   }
 
   .footer-section h3 {
-    font-size: 0.7rem; /* Fuente más pequeña */
+    font-size: 0.7rem; 
   }
 
   .footer-section a {
-    font-size: 0.65rem; /* Reducido tamaño de fuente */
+    font-size: 0.65rem; 
   }
 
   .footer-section {
-    padding: 3px; /* Espaciado interno más compacto */
+    padding: 3px; 
   }
 }

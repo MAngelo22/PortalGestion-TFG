@@ -44,9 +44,6 @@ const ListCursos = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:8085/api/curso/all',
-        { withCredentials: true }
-      );
       const response = await axios.get("http://localhost:8085/api/curso/all", {
         withCredentials: true,
       });
@@ -199,7 +196,16 @@ const ListCursos = () => {
       <div className="body-container">
         <Filter />
 
-        <main className="cards-container"  style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto'}}>
+        <main
+          className="cards-container"
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            gap: "20px",
+            width: "auto",
+          }}
+        >
           <div className="add-employee-section">
             <button
               className="add-employee-btn"
@@ -337,7 +343,7 @@ const ListCursos = () => {
               <div
                 key={index}
                 className="card"
-                onClick={() => handleCardClick(curso.nombre)}
+                onClick={() => handleCardClick(curso)}
               >
                 <img src={curso.foto} alt={curso.nombre} />
                 <h4>{curso.nombre}</h4>

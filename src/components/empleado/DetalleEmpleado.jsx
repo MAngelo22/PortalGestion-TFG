@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
+import "../estilos/estilo.css";
 import axios from 'axios';
 import Navbar from '../NavBar';
 
