@@ -44,6 +44,9 @@ const ListCursos = () => {
     setLoading(true);
     setError(null);
     try {
+      const response = await axios.get('http://localhost:8085/api/curso/all',
+        { withCredentials: true }
+      );
       const response = await axios.get("http://localhost:8085/api/curso/all", {
         withCredentials: true,
       });
@@ -130,9 +133,13 @@ const ListCursos = () => {
     }
   };
 
-  const handleCardClick = (nombre) => {
-    navigate(`/curso/${encodeURIComponent(nombre)}`);
+  const handleCardClick = (curso) => {
+    navigate(`/curso/${curso.id}`, { state: { curso } });
   };
+
+  // const handleCardClick = (nombre) => {
+  //   navigate(`/curso/${encodeURIComponent(nombre)}`);
+  // };
 
   const handlePageClick = (data) => {
     setCurrentPage(data.selected);

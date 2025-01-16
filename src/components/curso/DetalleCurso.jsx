@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import "./estilos/estilo.css";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import Navbar from "../NavBar.jsx";
 import Footer from "../Footer.jsx";
 
 const cursos = [
   {
+    id: "curso1",
     nombre: "Javier Martínez",
     descripcion: "Desarrollador web con experiencia en JavaScript y React.",
     nivel: "Experto",
@@ -18,8 +19,14 @@ const cursos = [
 ];
 
 const DetalleCurso = () => {
-  const { nombre } = useParams();
-  const curso = cursos.find((e) => e.nombre === decodeURIComponent(nombre));
+  // const { nombre } = useParams();
+  // const curso = cursos.find((e) => e.id === decodeURIComponent(id));
+  const location = useLocation();
+  const { curso } = location.state || {};
+  // const { id } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
 
   if (!curso) {
     return <p>Curso no encontrado</p>;
