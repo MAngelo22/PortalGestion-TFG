@@ -212,7 +212,7 @@ const ListProyectos = () => {
       <div className="body-container">
         <Filter />
 
-        <main className="cards-container">
+        <main className="cards-container"  style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto'}}>
           <div className="add-employee-section">
             <button
               className="add-employee-btn"
@@ -386,7 +386,7 @@ const ListProyectos = () => {
         </main>
       </div>
       <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
-      {/* <Footer /> */}
+      <Footer /> 
     </>
   );
 };

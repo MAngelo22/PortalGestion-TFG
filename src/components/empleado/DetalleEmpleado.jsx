@@ -33,7 +33,7 @@ const DetalleEmpleado = () => {
   return (
     <div>
       <Navbar />
-      <div className="detalle-empleado">
+      <div  style={{ justifyContent: 'center', marginTop: '10%', marginLeft: '10%' }} className="detalle-empleado">
         <img src={empleado.foto} alt={empleado.nombre} />
         <h2>{empleado.nombre}</h2>
         <p>{empleado.descripcion}</p>

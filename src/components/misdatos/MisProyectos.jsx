@@ -43,7 +43,7 @@ const MisProyectos = (activeTab) => {
 
   return (
     <>
-      {activeTab === 'proyectos' && (
+      
         <div className="mis-proyectos-content">
           <h1 className="mis-proyectos-title">Mis proyectos</h1>
           <div>
@@ -61,7 +61,7 @@ const MisProyectos = (activeTab) => {
             <button className="explorar-proyectos-button">Explora el catálogo de proyectos</button>
           </Link>
         </div>
-      )}
+    
     </>
   );
 };

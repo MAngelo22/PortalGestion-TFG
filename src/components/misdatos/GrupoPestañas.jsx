@@ -19,9 +19,9 @@ const GrupoPestañas = ({ currentItems, pageCount, handlePageClick, cursosImg })
                     <button onClick={() => setActiveTab('favoritos')}>Mis favoritos</button>
                 </div>
 
-                <MisCursos activeTab={activeTab} />
+                <MisCursos />
 
-                <MisProyectos activeTab={activeTab} />
+                <MisProyectos />
 
                 {activeTab === 'favoritos' && (
                     <div className="mis-favoritos-content">

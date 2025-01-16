@@ -5,6 +5,7 @@ import "./ListEmpleados.css";
 import Paginacion from "../utils/Paginacion";
 import axios from "axios";
 import Filter from "../utils/Filter.jsx";
+import Footer from "../Footer";
 import MensajeAlerta from "../utils/MensajeAlerta.jsx";
 
 const ListEmpleados = () => {
@@ -167,7 +168,7 @@ const ListEmpleados = () => {
 
       {/* {mesgAlert && <MensajeAlerta message={mesgAlert} />} */}
 
-      <Filter />
+      <Filter/>
 
       <div className="body-container">
 
@@ -183,7 +184,7 @@ const ListEmpleados = () => {
           </div>
         )}
 
-        <main className="cards-container">
+        <main className="cards-container" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto'}}>
           <div className="add-employee-section">
             <button
               className="add-employee-btn"
@@ -363,7 +364,7 @@ const ListEmpleados = () => {
         </main>
       </div>
       <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
-      {/* <Footer/> */}
+      <Footer/> 
     </>
   );
 };

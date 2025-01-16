@@ -42,7 +42,7 @@ const MisCursos = (activeTab) => {
 
   return (
     <>
-      {activeTab === 'cursos' && (
+      
         <div className="mis-cursos-content">
           <h1 className="mis-cursos-title">Mis cursos</h1>
           <div>
@@ -60,7 +60,7 @@ const MisCursos = (activeTab) => {
             <button className="explorar-cursos-button">Explora el catálogo de cursos</button>
           </Link>
         </div>
-      )}
+      
     </>
   );
 };

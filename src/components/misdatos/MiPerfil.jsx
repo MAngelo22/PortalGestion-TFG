@@ -150,7 +150,7 @@ const MiPerfil = () => {
             ) : (
               <>
                 <button className="btn-editar" onClick={handleEditarClick}>Editar</button>
-                <Link to="/miscursos" className="btn-link">
+                <Link to="/mispestañas" className="btn-link">
                   <button className="btn-editar">Mis Cursos</button>
                 </Link>
                 <Link to="/misproyectos" className="btn-link">

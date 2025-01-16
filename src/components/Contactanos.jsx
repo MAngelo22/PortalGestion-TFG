@@ -22,7 +22,7 @@ const Contactanos = () => {
           </div>
           <div className="contact-item">
           <img className="contact-img" src={carta} alt="imagen2"></img>
-            <p>Escríbenos a: info@academiamiral.com</p>
+            <p>Escríbenos a: info@portalgestion.com</p>
           </div>
           <div className="contact-item">
           <img className="contact-img" src={ct3} alt="imagen3"></img>
