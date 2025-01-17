@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import "./DetalleEmpleado.css";
 // import "../estilos/estilo.css";
 import axios from 'axios';
 import Navbar from '../NavBar';
+import Footer from '../Footer';
 
 const DetalleEmpleado = () => {
   const location = useLocation();
@@ -38,10 +39,10 @@ const DetalleEmpleado = () => {
     <>
 
       <Navbar />
-      <br />
-      <br />
-      <br />
       <div className="detalle-empleado">
+        <Link to="/empleados" className="back-link">
+          ← Volver
+        </Link>
         <h1 className="nombre">Ana Torres</h1>
         <ul className="perfil-lista">
           <li><strong>Perfil:</strong> Analista de datos con habilidades en Python y SQL.</li>
@@ -65,14 +66,32 @@ const DetalleEmpleado = () => {
           <button className="boton-favorito">❤️</button>
         </div>
 
+        {/* <div className="grupo-tabs-foto"> */}
         <div className="tabs">
           <button className="tab activa">Perfil</button>
           <button className="tab">Experiencia</button>
           <button className="tab">Conocimientos</button>
           <button className="tab">Proyectos</button>
         </div>
+        <img
+          className="foto-perfil"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRIMD06f1rWsZhz9adYZk_MmGMPlyjSF6VIw&s"
+          alt="Foto de Ana Torres"
+        />
+        {/* </div> */}
 
-        <div className="contenido">
+
+        <ul className="contenido">
+          <li>
+            <strong>Analista de datos:</strong></li> &gt; 4 años
+          <li>
+            <strong>Python:</strong></li> Pandas - NumPy
+          <li>
+            <strong>SQL:</strong></li> Avanzado
+          <li>
+            <strong>Power BI:</strong></li> Avanzado
+        </ul>
+        {/* <div className="contenido">
           <div className="contenido-item">
             <strong>Analista de datos:</strong> &gt; 4 años
           </div>
@@ -85,14 +104,10 @@ const DetalleEmpleado = () => {
           <div className="contenido-item">
             <strong>Power BI:</strong> Avanzado
           </div>
-        </div>
+        </div> */}
 
-        <img
-          className="foto-perfil"
-          src="https://via.placeholder.com/100"
-          alt="Foto de Ana Torres"
-        />
       </div>
+      <Footer />
     </>
   );
 };

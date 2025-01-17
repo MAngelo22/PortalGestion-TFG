@@ -1,4 +1,4 @@
-.detalle-empleado {
+.detalle-curso {
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
@@ -26,13 +26,13 @@
   margin-bottom: 10px;
 }
 
-.perfil-lista {
+.temario-lista {
   list-style: none;
   padding: 0;
   margin: 0 0 20px;
 }
 
-.perfil-lista li {
+.temario-lista li {
   font-size: 1rem;
   color: #475569;
   margin-bottom: 10px;
@@ -79,7 +79,7 @@
   margin-bottom: 20px;
 }
 
-.boton-asignar {
+.boton-comenzar {
   background-color: #3b82f6;
   color: white;
   padding: 10px 15px;
@@ -90,7 +90,7 @@
   transition: background-color 0.3s;
 }
 
-.boton-asignar:hover {
+.boton-comenzar:hover {
   background-color: #2563eb;
 }
 
@@ -154,11 +154,10 @@
   color: #475569;
 }
 
-.foto-perfil {
+.media {
   /* width: 40%;  */
   max-width: 20%; 
   height: auto; 
-  border-radius: 50%;
   object-fit: cover;
   flex-grow: 1; 
 }

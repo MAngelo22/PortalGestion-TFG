@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import "./DetalleProyecto.css";
+// import "../estilos/estilo.css";
 import axios from 'axios';
 import Navbar from '../NavBar';
+import Footer from '../Footer';
 
 const DetalleProyecto = () => {
   const location = useLocation();
@@ -33,22 +36,67 @@ const DetalleProyecto = () => {
   // if (!proyecto) return <div>No se encontró el proyecto</div>;
 
   return (
-    <div>
+    <>
+
       <Navbar />
-      {proyecto &&
-        <div className="detalle-proyecto" style={{ justifyContent: 'center', marginTop: '10%', marginLeft: '10%' }}>
-          <img src={proyecto.foto} alt={proyecto.nombre} />
-          <h2>{proyecto.nombre}</h2>
-          <p>{proyecto.descripcion}</p>
-          <div className="nivel">Nivel: {proyecto.nivel}</div>
-          <div className="rating">
-            {"★".repeat(proyecto.estrellas)}
-            {"☆".repeat(5 - proyecto.estrellas)}
+      <div className="detalle-proyecto">
+        <Link to="/proyectos" className="back-link">
+          ← Volver
+        </Link>
+        <h1 className="nombre">Proyecto Banca Digital</h1>
+        <ul className="perfil-lista">
+          <li><strong>Descripción:</strong> Desarrollo de una plataforma bancaria digital para gestión de cuentas y transacciones.</li>
+          <li><strong>Alcance:</strong> Sistema completo de banca online con funcionalidades de pagos, transferencias y gestión de usuarios.</li>
+          <li><strong>Tecnologías:</strong> React, Node.js, MongoDB, AWS</li>
+          <li><strong>Logros destacados:</strong> Implementación de autenticación biométrica y sistema de pagos instantáneos.</li>
+        </ul>
+
+        <div className="informacion-extra">
+          <span className="nivel">Nivel: Avanzado</span>
+          <span className="actualizacion">Última actualización: 03/2024</span>
+        </div>
+
+        <div className="calificacion">
+          <span className="estrellas">⭐⭐⭐⭐</span>
+          <span className="puntaje">4.2</span>
+        </div>
+
+        <div className="acciones">
+          <button className="boton-solicitar">Solicitar proyecto ...</button>
+          <button className="boton-asignar">Asignar proyecto a ...</button>
+          <button className="boton-favorito">❤️</button>
+        </div>
+
+        <div className="tabs">
+          <button className="tab activa">Requisitos técnicos</button>
+          <button className="tab">Arquitectura</button>
+          <button className="tab">Equipo</button>
+          <button className="tab">Timeline</button>
+        </div>
+        <img
+          className="media"
+          src="/proyectoBanca.png"
+          alt="Proyecto Banca"
+        />
+
+        <div className="contenido">
+          <div className="contenido-item">
+            <strong>Backend:</strong> Node.js - Express
+          </div>
+          <div className="contenido-item">
+            <strong>Frontend:</strong> React - Redux
+          </div>
+          <div className="contenido-item">
+            <strong>Base de datos:</strong> MongoDB
+          </div>
+          <div className="contenido-item">
+            <strong>Cloud:</strong> AWS
           </div>
         </div>
-        // || <div>No se encontró el proyecto</div>
-      }
-    </div>
+
+      </div>
+      <Footer />
+    </>
   );
 };
 
