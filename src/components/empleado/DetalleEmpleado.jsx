@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
-import "../estilos/estilo.css";
+import "./DetalleEmpleado.css";
+// import "../estilos/estilo.css";
 import axios from 'axios';
 import Navbar from '../NavBar';
 
@@ -34,22 +35,65 @@ const DetalleEmpleado = () => {
   // if (!empleado) return <div>No se encontró el empleado</div>;
 
   return (
-    <div>
+    <>
+
       <Navbar />
-      {empleado &&
-        <div style={{ justifyContent: 'center', marginTop: '10%', marginLeft: '10%' }} className="detalle-empleado">
-          <img src={empleado.foto} alt={empleado.nombre} />
-          <h2>{empleado.nombre}</h2>
-          <p>{empleado.descripcion}</p>
-          <div className="nivel">Nivel: {empleado.nivel}</div>
-          <div className="rating">
-            {"★".repeat(empleado.estrellas)}
-            {"☆".repeat(5 - empleado.estrellas)}
+      <br />
+      <br />
+      <br />
+      <div className="detalle-empleado">
+        <h1 className="nombre">Ana Torres</h1>
+        <ul className="perfil-lista">
+          <li><strong>Perfil:</strong> Analista de datos con habilidades en Python y SQL.</li>
+          <li><strong>Experiencia:</strong> Más de 4 años analizando datos para decisiones empresariales.</li>
+          <li><strong>Conocimientos:</strong> Python (Pandas), SQL y visualización con Tableau.</li>
+          <li><strong>Proyectos destacados:</strong> Implementación de un dashboard interactivo que permitió a la dirección monitorear KPIs clave en tiempo real.</li>
+        </ul>
+
+        <div className="informacion-extra">
+          <span className="nivel">Nivel: avanzado</span>
+          <span className="actualizacion">Última actualización: 10/2024</span>
+        </div>
+
+        <div className="calificacion">
+          <span className="estrellas">⭐⭐⭐⭐⭐</span>
+          <span className="puntaje">4.6</span>
+        </div>
+
+        <div className="acciones">
+          <button className="boton-asignar">Asignar a proyecto ...</button>
+          <button className="boton-favorito">❤️</button>
+        </div>
+
+        <div className="tabs">
+          <button className="tab activa">Perfil</button>
+          <button className="tab">Experiencia</button>
+          <button className="tab">Conocimientos</button>
+          <button className="tab">Proyectos</button>
+        </div>
+
+        <div className="contenido">
+          <div className="contenido-item">
+            <strong>Analista de datos:</strong> &gt; 4 años
+          </div>
+          <div className="contenido-item">
+            <strong>Python:</strong> Pandas - NumPy
+          </div>
+          <div className="contenido-item">
+            <strong>SQL:</strong> Avanzado
+          </div>
+          <div className="contenido-item">
+            <strong>Power BI:</strong> Avanzado
           </div>
         </div>
-        // || <div>No se encontró el empleado</div>
-      }
-    </div>
+
+        <img
+          className="foto-perfil"
+          src="https://via.placeholder.com/100"
+          alt="Foto de Ana Torres"
+        />
+      </div>
+    </>
   );
 };
 

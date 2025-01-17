@@ -1,0 +1,134 @@
+.detalle-empleado {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.nombre {
+  font-size: 2rem;
+  color: #1e293b;
+  margin-bottom: 10px;
+}
+
+.perfil-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.perfil-lista li {
+  font-size: 1rem;
+  color: #475569;
+  margin-bottom: 10px;
+}
+
+.informacion-extra {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.nivel {
+  font-weight: bold;
+  color: #1d4ed8;
+}
+
+.actualizacion {
+  font-style: italic;
+}
+
+.calificacion {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.estrellas {
+  color: #fbbf24;
+  margin-right: 10px;
+}
+
+.puntaje {
+  color: #475569;
+}
+
+.acciones {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.boton-asignar {
+  background-color: #3b82f6;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.boton-asignar:hover {
+  background-color: #2563eb;
+}
+
+.boton-favorito {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #f43f5e;
+  cursor: pointer;
+}
+
+.tabs {
+  display: flex;
+  gap: 15px;
+  border-bottom: 2px solid #e5e7eb;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #3b82f6;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.tab:hover {
+  color: #2563eb;
+}
+
+.tab.activa {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.contenido {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.contenido-item {
+  font-size: 1rem;
+  color: #475569;
+}
+
+.foto-perfil {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 20px auto 0;
+  display: block;
+}
