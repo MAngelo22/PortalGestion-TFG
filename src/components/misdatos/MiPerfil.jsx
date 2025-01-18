@@ -34,7 +34,7 @@ const MiPerfil = () => {
     setError(null);
     try {
       const response = await axios.put(`http://localhost:8085/api/usuario/edit/${formValues.id}`, formValues,
-      { withCredentials: true });
+        { withCredentials: true });
       // const usuarioEditar = usuarios.map(usu =>
       //   usu.id === id ? response.data : usu
       // );
@@ -70,7 +70,7 @@ const MiPerfil = () => {
                   <strong>Nombre y Apellidos</strong>
                   <br />
                   {editable ? (
-                    <input type="text" name="nombre" value={perfil.nombre} onChange={() => {}} readOnly={!editable} />
+                    <input type="text" name="nombre" value={perfil.nombre} onChange={() => { }} readOnly={!editable} />
                   ) : (
                     perfil.nombre
                   )}
@@ -79,7 +79,7 @@ const MiPerfil = () => {
                   <strong>Teléfono</strong>
                   <br />
                   {editable ? (
-                    <input type="text" name="telefono" value={perfil.telefono} onChange={() => {}} readOnly={!editable} />
+                    <input type="text" name="telefono" value={perfil.telefono} onChange={() => { }} readOnly={!editable} />
                   ) : (
                     perfil.telefono
                   )}
@@ -88,7 +88,7 @@ const MiPerfil = () => {
                   <strong>País</strong>
                   <br />
                   {editable ? (
-                    <input type="text" name="pais" value={perfil.pais} onChange={() => {}} readOnly={!editable} />
+                    <input type="text" name="pais" value={perfil.pais} onChange={() => { }} readOnly={!editable} />
                   ) : (
                     perfil.pais
                   )}
@@ -97,7 +97,7 @@ const MiPerfil = () => {
                   <strong>Departamento</strong>
                   <br />
                   {editable ? (
-                    <input type="text" name="departamento" value={perfil.departamento} onChange={() => {}} readOnly={!editable} />
+                    <input type="text" name="departamento" value={perfil.departamento} onChange={() => { }} readOnly={!editable} />
                   ) : (
                     perfil.departamento
                   )}
@@ -108,7 +108,7 @@ const MiPerfil = () => {
                   <strong>Código usuario</strong>
                   <br />
                   {editable ? (
-                    <input type="text" name="codigoUsuario" value={perfil.codigoUsuario} onChange={() => {}} readOnly={!editable} />
+                    <input type="text" name="codigoUsuario" value={perfil.codigoUsuario} onChange={() => { }} readOnly={!editable} />
                   ) : (
                     perfil.codigoUsuario
                   )}
@@ -117,7 +117,7 @@ const MiPerfil = () => {
                   <strong>Email</strong>
                   <br />
                   {editable ? (
-                    <input type="text" name="email" value={perfil.email} onChange={() => {}} readOnly={!editable} />
+                    <input type="text" name="email" value={perfil.email} onChange={() => { }} readOnly={!editable} />
                   ) : (
                     perfil.email
                   )}
@@ -126,7 +126,7 @@ const MiPerfil = () => {
                   <strong>Ciudad</strong>
                   <br />
                   {editable ? (
-                    <input type="text" name="ciudad" value={perfil.ciudad} onChange={() => {}} readOnly={!editable} />
+                    <input type="text" name="ciudad" value={perfil.ciudad} onChange={() => { }} readOnly={!editable} />
                   ) : (
                     perfil.ciudad
                   )}
@@ -135,7 +135,7 @@ const MiPerfil = () => {
                   <strong>Fecha incorporación</strong>
                   <br />
                   {editable ? (
-                    <input type="text" name="fechaIncorporacion" value={perfil.fechaIncorporacion} onChange={() => {}} readOnly={!editable} />
+                    <input type="text" name="fechaIncorporacion" value={perfil.fechaIncorporacion} onChange={() => { }} readOnly={!editable} />
                   ) : (
                     perfil.fechaIncorporacion
                   )}
@@ -150,7 +150,7 @@ const MiPerfil = () => {
             ) : (
               <>
                 <button className="btn-editar" onClick={handleEditarClick}>Editar</button>
-                <Link to="/mispestañas" className="btn-link">
+                <Link to="/miscursos" className="btn-link">
                   <button className="btn-editar">Mis Cursos</button>
                 </Link>
                 <Link to="/misproyectos" className="btn-link">
