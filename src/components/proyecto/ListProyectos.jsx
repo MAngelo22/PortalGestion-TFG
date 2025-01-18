@@ -65,7 +65,8 @@ const ListProyectos = () => {
   // };
 
   useEffect(() => {
-    axios.get('http://localhost:8085/api/proyecto/all')
+    axios.get('http://localhost:8085/api/proyecto/all',
+      { withCredentials: true })
       .then(response => {
         console.log('Respuesta: ', response);
 
@@ -93,11 +94,9 @@ const ListProyectos = () => {
     setError(null);
     try {
 
-      const response = await axios.post('http://localhost:8085/api/proyecto/new', nuevoProyecto, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
+      const response = await axios.post('http://localhost:8085/api/proyecto/new', nuevoProyecto,
+        { withCredentials: true }
+      );
       setProyectos([...proyectos, response.data]);
       alert('Proyecto creado exitosamente');
     } catch (error) {
@@ -113,7 +112,8 @@ const ListProyectos = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.put(`http://localhost:8085/api/proyecto/edit/${id}`, datosActualizados);
+      const response = await axios.put(`http://localhost:8085/api/proyecto/edit/${id}`, datosActualizados,
+        { withCredentials: true });
       const proyectoEditar = proyectos.map(proy =>
         proy.id === id ? response.data : proy
       );
@@ -136,7 +136,8 @@ const ListProyectos = () => {
     setLoading(true);
     setError(null);
     try {
-      await axios.delete(`http://localhost:8085/api/proyecto/del/${id}`);
+      await axios.delete(`http://localhost:8085/api/proyecto/del/${id}`,
+        { withCredentials: true });
       setProyectos(proyectos.filter(proy => proy.id !== id));
       alert('Proyecto eliminado exitosamente');
     } catch (error) {
@@ -147,8 +148,8 @@ const ListProyectos = () => {
     }
   };
 
-  const handleCardClick = (id) => {
-    navigate(`/proyecto/${encodeURIComponent(id)}`);
+  const handleCardClick = (proyecto) => {
+    navigate(`/proyecto/${proyecto.id}`, { state: { proyecto } });
   };
 
   const handlePageClick = (data) => {
@@ -211,7 +212,7 @@ const ListProyectos = () => {
       <div className="body-container">
         <Filter />
 
-        <main className="cards-container">
+        <main className="cards-container"  style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto'}}>
           <div className="add-employee-section">
             <button
               className="add-employee-btn"
@@ -284,11 +285,11 @@ const ListProyectos = () => {
               </div>
             )}
           </div>
-          {currentItems.map((proyecto, index) => (
+          {currentItems && currentItems.map((proyecto, index) => (
             <div
               key={index}
               className="card"
-              onClick={() => handleCardClick(proyecto.id)}
+              onClick={() => handleCardClick(proyecto)}
             >
               {proyecto.foto && <img src={proyecto.foto} alt={proyecto.nombre} />}
               <h4>{proyecto.nombre}</h4>
@@ -385,7 +386,7 @@ const ListProyectos = () => {
         </main>
       </div>
       <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
-      {/* <Footer /> */}
+      <Footer /> 
     </>
   );
 };

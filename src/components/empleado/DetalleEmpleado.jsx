@@ -1,49 +1,114 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
+import "./DetalleEmpleado.css";
+// import "../estilos/estilo.css";
 import axios from 'axios';
 import Navbar from '../NavBar';
+import Footer from '../Footer';
 
 const DetalleEmpleado = () => {
-  const { id } = useParams();
-  const [empleado, setEmpleado] = useState(null);
+  const location = useLocation();
+  const { empleado } = location.state || {};
+  // const { id } = useParams();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const obtenerEmpleado = async () => {
-      try {
-        const response = await axios.get(`http://localhost:8085/api/empleado/${id}`);
-        setEmpleado(response.data);
-      } catch (error) {
-        setError('Error al cargar los datos del empleado');
-        console.error('Error:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  console.log('Empleado:', empleado);
+  // useEffect(() => {
+  //   const obtenerEmpleado = async () => {
+  //     try {
+  //       const response = await axios.get(`http://localhost:8085/api/empleado/${id}`,
+  //       { withCredentials: true });
+  //       setEmpleado(response.data);
+  //     } catch (error) {
+  //       setError('Error al cargar los datos del empleado');
+  //       console.error('Error:', error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-    obtenerEmpleado();
-  }, [id]);
+  //   obtenerEmpleado();
+  // }, [id]);
 
-  if (loading) return <div>Cargando...</div>;
-  if (error) return <div>{error}</div>;
-  if (!empleado) return <div>No se encontró el empleado</div>;
+  // if (loading) return <div>Cargando...</div>;
+  // if (error) return <div>{error}</div>;
+  // if (!empleado) return <div>No se encontró el empleado</div>;
 
   return (
-    <div>
+    <>
+
       <Navbar />
       <div className="detalle-empleado">
-        <img src={empleado.foto} alt={empleado.nombre} />
-        <h2>{empleado.nombre}</h2>
-        <p>{empleado.descripcion}</p>
-        <div className="nivel">Nivel: {empleado.nivel}</div>
-        <div className="rating">
-          {"★".repeat(empleado.estrellas)}
-          {"☆".repeat(5 - empleado.estrellas)}
+        <Link to="/empleados" className="back-link">
+          ← Volver
+        </Link>
+        <h1 className="nombre">Ana Torres</h1>
+        <ul className="perfil-lista">
+          <li><strong>Perfil:</strong> Analista de datos con habilidades en Python y SQL.</li>
+          <li><strong>Experiencia:</strong> Más de 4 años analizando datos para decisiones empresariales.</li>
+          <li><strong>Conocimientos:</strong> Python (Pandas), SQL y visualización con Tableau.</li>
+          <li><strong>Proyectos destacados:</strong> Implementación de un dashboard interactivo que permitió a la dirección monitorear KPIs clave en tiempo real.</li>
+        </ul>
+
+        <div className="informacion-extra">
+          <span className="nivel">Nivel: avanzado</span>
+          <span className="actualizacion">Última actualización: 10/2024</span>
         </div>
-        {/* Añade más detalles según tu modelo de datos */}
+
+        <div className="calificacion">
+          <span className="estrellas">⭐⭐⭐⭐⭐</span>
+          <span className="puntaje">4.6</span>
+        </div>
+
+        <div className="acciones">
+          <button className="boton-asignar">Asignar a proyecto ...</button>
+          <button className="boton-favorito">❤️</button>
+        </div>
+
+        {/* <div className="grupo-tabs-foto"> */}
+        <div className="tabs">
+          <button className="tab activa">Perfil</button>
+          <button className="tab">Experiencia</button>
+          <button className="tab">Conocimientos</button>
+          <button className="tab">Proyectos</button>
+        </div>
+        <img
+          className="foto-perfil"
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRIMD06f1rWsZhz9adYZk_MmGMPlyjSF6VIw&s"
+          alt="Foto de Ana Torres"
+        />
+        {/* </div> */}
+
+
+        <ul className="contenido">
+          <li>
+            <strong>Analista de datos:</strong></li> &gt; 4 años
+          <li>
+            <strong>Python:</strong></li> Pandas - NumPy
+          <li>
+            <strong>SQL:</strong></li> Avanzado
+          <li>
+            <strong>Power BI:</strong></li> Avanzado
+        </ul>
+        {/* <div className="contenido">
+          <div className="contenido-item">
+            <strong>Analista de datos:</strong> &gt; 4 años
+          </div>
+          <div className="contenido-item">
+            <strong>Python:</strong> Pandas - NumPy
+          </div>
+          <div className="contenido-item">
+            <strong>SQL:</strong> Avanzado
+          </div>
+          <div className="contenido-item">
+            <strong>Power BI:</strong> Avanzado
+          </div>
+        </div> */}
+
       </div>
-    </div>
+      <Footer />
+    </>
   );
 };
 

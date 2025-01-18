@@ -3,7 +3,7 @@ import "./Filter.css";
 
 const Filter = () => {
   return (
-    <aside className="filters">
+    <aside style={{ marginTop: '5%' }} className="filters">
       <h3>Sector</h3>
       <label>
         <input type="checkbox" /> Banca (124)

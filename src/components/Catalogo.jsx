@@ -11,26 +11,27 @@ const Dashboard = () => {
 
       <main className="main-container">
         <h1 className="main-title">Catálogo de empleados</h1>
-        <div className="cards-container">
-          {[
-            "Diseño",
-            "Desarrollo",
-            "Marketing",
-            "Informática",
-            "Desarrollo personal",
-            "Fotografía",
-            "Salud y fitness",
-            "Música",
-            "Ilustración",
-            "Arquitectura",
-            "Caligrafía",
-            "Moda",
-          ].map((category, index) => (
-            <div className="card" key={index}>
-              {category}
-            </div>
-          ))}
-        </div>
+        <div className="cards-container" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto'}}>
+  {[
+    "Diseño",
+    "Desarrollo",
+    "Marketing",
+    "Informática",
+    "Desarrollo personal",
+    "Fotografía",
+    "Salud y fitness",
+    "Música",
+    "Ilustración",
+    "Arquitectura",
+    "Caligrafía",
+    "Moda",
+  ].map((category, index) => (
+    <div className="card" key={index}>
+      <h4>{category}</h4>
+    </div>
+  ))}
+</div>
+
       </main>
 
       <Footer/>

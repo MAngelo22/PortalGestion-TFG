@@ -5,6 +5,7 @@ import "./ListEmpleados.css";
 import Paginacion from "../utils/Paginacion";
 import axios from "axios";
 import Filter from "../utils/Filter.jsx";
+import Footer from "../Footer";
 import MensajeAlerta from "../utils/MensajeAlerta.jsx";
 
 const ListEmpleados = () => {
@@ -42,7 +43,8 @@ const ListEmpleados = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.get('http://localhost:8085/api/empleado/all');
+      const response = await axios.get('http://localhost:8085/api/empleado/all',
+        { withCredentials: true });
       setEmpleados(response.data);
     } catch (error) {
       setError('Error al obtener los empleados');
@@ -64,7 +66,8 @@ const ListEmpleados = () => {
     setError(null);
     try {
 
-      const response = await axios.post('http://localhost:8085/api/empleado/new', nuevoEmpleado);
+      const response = await axios.post('http://localhost:8085/api/empleado/new', nuevoEmpleado,
+        { withCredentials: true });
       setEmpleados([...empleados, response.data]);
       alert('Empleado creado exitosamente');
     } catch (error) {
@@ -80,7 +83,8 @@ const ListEmpleados = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await axios.put(`http://localhost:8085/api/empleado/edit/${id}`, datosActualizados);
+      const response = await axios.put(`http://localhost:8085/api/empleado/edit/${id}`, datosActualizados,
+        { withCredentials: true });
       const empleadoEditar = empleados.map(emp =>
         emp.id === id ? response.data : emp
       );
@@ -103,7 +107,8 @@ const ListEmpleados = () => {
     setLoading(true);
     setError(null);
     try {
-      await axios.delete(`http://localhost:8085/api/empleado/del/${id}`);
+      await axios.delete(`http://localhost:8085/api/empleado/del/${id}`,
+        { withCredentials: true });
       setEmpleados(empleados.filter(emp => emp.id !== id));
       alert('Empleado eliminado exitosamente');
     } catch (error) {
@@ -114,8 +119,8 @@ const ListEmpleados = () => {
     }
   };
 
-  const handleCardClick = (id) => {
-    navigate(`/empleado/${id}`);
+  const handleCardClick = (empleado) => {
+    navigate(`/empleado/${empleado.id}`, { state: { empleado } });
   };
 
   const handlePageClick = (data) => {
@@ -163,7 +168,7 @@ const ListEmpleados = () => {
 
       {/* {mesgAlert && <MensajeAlerta message={mesgAlert} />} */}
 
-      <Filter />
+      <Filter/>
 
       <div className="body-container">
 
@@ -179,7 +184,7 @@ const ListEmpleados = () => {
           </div>
         )}
 
-        <main className="cards-container">
+        <main className="cards-container" style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto'}}>
           <div className="add-employee-section">
             <button
               className="add-employee-btn"
@@ -256,11 +261,11 @@ const ListEmpleados = () => {
             )}
           </div>
 
-          {currentItems.map((empleado, index) => (
+          {currentItems && currentItems.map((empleado, index) => (
             <div
               key={index}
               className="card"
-              onClick={() => handleCardClick(empleado.id)}
+              onClick={() => handleCardClick(empleado)}
             >
               <img src={empleado.foto} alt={empleado.nombre} />
               <h4>{empleado.nombre}</h4>
@@ -359,7 +364,7 @@ const ListEmpleados = () => {
         </main>
       </div>
       <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
-      {/* <Footer/> */}
+      <Footer/> 
     </>
   );
 };

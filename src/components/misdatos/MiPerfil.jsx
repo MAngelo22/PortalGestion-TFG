@@ -33,7 +33,8 @@ const MiPerfil = () => {
 
     setError(null);
     try {
-      const response = await axios.put(`http://localhost:8085/api/usuario/edit/${formValues.id}`, formValues);
+      const response = await axios.put(`http://localhost:8085/api/usuario/edit/${formValues.id}`, formValues,
+      { withCredentials: true });
       // const usuarioEditar = usuarios.map(usu =>
       //   usu.id === id ? response.data : usu
       // );
@@ -149,7 +150,7 @@ const MiPerfil = () => {
             ) : (
               <>
                 <button className="btn-editar" onClick={handleEditarClick}>Editar</button>
-                <Link to="/miscursos" className="btn-link">
+                <Link to="/mispestañas" className="btn-link">
                   <button className="btn-editar">Mis Cursos</button>
                 </Link>
                 <Link to="/misproyectos" className="btn-link">
