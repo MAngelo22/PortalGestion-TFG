@@ -110,11 +110,24 @@ const DetalleEmpleado = () => {
           </div>
 
           <div className="detalle-imagen">
-            <img
+            {/* <img
               className="foto-perfil"
               src={empleado.foto || '/default-profile.jpg'}
               alt={`Foto de ${empleado.nombre}`}
-            />
+            /> */}
+            {!empleado.foto ? (
+              <img
+                className="foto-perfil"
+                src="/default-empleado.png"
+                alt={`Imagen por defecto de ${empleado.nombre}`}
+              />
+            ) : (
+              <img
+                className="foto-perfil"
+                src={empleado.foto}
+                alt={`Foto de ${empleado.nombre}`}
+              />
+            )}
           </div>
         </div>
       </div>

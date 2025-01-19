@@ -348,7 +348,7 @@ const ListCursos = () => {
                 {!curso.foto ? (
                   <img
                     className="curso-imagen"
-                    src="/default-course.jpg"
+                    src="/curso.png"
                     alt={`Imagen por defecto de ${curso.nombre}`}
                   />
                 ) : (

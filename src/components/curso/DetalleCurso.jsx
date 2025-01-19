@@ -43,7 +43,7 @@ const DetalleCurso = () => {
         <Link to="/cursos" className="back-link">
           ← Volver
         </Link>
-        
+
         <div className="detalle-contenido">
           <div className="detalle-info">
             <h1 className="nombre">{curso.nombre}</h1>
@@ -86,11 +86,24 @@ const DetalleCurso = () => {
           </div>
 
           <div className="detalle-imagen">
-            <img
+            {/* <img
               className="curso-imagen"
               src={curso.foto || '/default-course.jpg'}
               alt={`Imagen de ${curso.nombre}`}
-            />
+            /> */}
+            {!curso.foto ? (
+              <img
+                className="curso-imagen"
+                src="/curso.png"
+                alt={`Imagen por defecto de ${curso.nombre}`}
+              />
+            ) : (
+              <img
+                className="curso-imagen"
+                src={curso.foto}
+                alt={`Imagen de ${curso.nombre}`}
+              />
+            )}
           </div>
         </div>
       </div>
