@@ -4,6 +4,7 @@ import axios from 'axios';
 import "./DetalleEmpleado.css";
 import Navbar from '../NavBar';
 import Footer from '../Footer';
+import { format } from 'date-fns';
 
 const DetalleEmpleado = () => {
   const { id } = useParams();
@@ -78,7 +79,7 @@ const DetalleEmpleado = () => {
 
             <div className="informacion-extra">
               <span className="nivel">Nivel: {empleado.nivel}</span>
-              <span className="actualizacion">Última actualización: {new Date(empleado.updatedAt).toLocaleDateString()}</span>
+              <span className="actualizacion"> Fecha incorporación: {format(new Date(empleado.fechaIncorporacion), 'dd/MM/yyyy')}</span>
             </div>
 
             <div className="calificacion">
@@ -90,7 +91,8 @@ const DetalleEmpleado = () => {
               <button className="boton-asignar"
                 onClick={() => asignarEmpToProyect('1')}
               > Asignar a proyecto ...</button>
-              <button className="boton-favorito">❤️</button>
+              {/* <button className="boton-favorito">❤️</button> */}
+              <button className="boton-favorito">{empleado.destacado} </button>
             </div>
 
             <div className="tabs">

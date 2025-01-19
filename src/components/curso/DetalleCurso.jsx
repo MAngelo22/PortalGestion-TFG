@@ -4,6 +4,7 @@ import axios from 'axios';
 import "./DetalleCurso.css";
 import Navbar from '../NavBar';
 import Footer from '../Footer';
+import { format } from 'date-fns';
 
 const DetalleCurso = () => {
   const { id } = useParams();
@@ -56,7 +57,7 @@ const DetalleCurso = () => {
 
             <div className="informacion-extra">
               <span className="nivel">Nivel: {curso.nivelExperiencia}</span>
-              <span className="actualizacion">Última actualización: {new Date(curso.updatedAt).toLocaleDateString()}</span>
+              <span className="actualizacion"> Última actualización: {format(new Date(curso.ultimaActualizacion), 'dd/MM/yyyy')}</span>
             </div>
 
             <div className="calificacion">
@@ -66,7 +67,10 @@ const DetalleCurso = () => {
 
             <div className="acciones">
               <button className="boton-comenzar">Comenzar el curso ...</button>
-              <button className="boton-favorito">❤️</button>
+              {/* <button className="boton-favorito">❤️</button>
+               */}
+
+              <button className="boton-favorito">{curso.destacado} </button>
             </div>
 
             <div className="tabs">
