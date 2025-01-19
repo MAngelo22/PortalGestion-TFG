@@ -384,22 +384,8 @@ const ListCursos = () => {
                 <button className="fav-button">♡</button>
                 <div className="card-actions">
                   <button
-                    style={{
-                      backgroundColor: '#1565C0',
-                      color: 'white',
-                      border: 'none',
-                      padding: '8px 16px',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      fontSize: '13px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '4px',
-                      transition: 'all 0.3s ease',
-                      flex: 1
-                    }}
-                     className="edit-btn"
+                    style={{ color: 'white', backgroundColor: 'blue', border: 'none', marginRight: '10px', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
+                    className="edit-btn"
                     onClick={(e) => {
                       e.stopPropagation();
                       e.preventDefault();
@@ -411,22 +397,8 @@ const ListCursos = () => {
                   </button>
 
                   <button
-                  className="delete-btn"
-                    style={{
-                      backgroundColor: '#C62828',
-                      color: 'white',
-                      border: 'none',
-                      padding: '8px 16px',
-                      borderRadius: '6px',
-                      cursor: 'pointer',
-                      fontSize: '13px',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      gap: '4px',
-                      transition: 'all 0.3s ease',
-                      flex: 1
-                    }}
+                    className="delete-btn"
+                    style={{ color: 'white', backgroundColor: '#C62828', border: 'none', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
                     onClick={(e) => {
                       e.stopPropagation();
                       eliminarCurso(curso.id);

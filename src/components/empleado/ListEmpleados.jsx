@@ -170,7 +170,7 @@ const ListEmpleados = () => {
         <main className="cards-container">
           <div className="add-employee-section">
             <button
-            className="add-employee-btn"
+              className="add-employee-btn"
               style={{
                 backgroundColor: '#2E7D32',
                 color: 'white',
@@ -224,22 +224,8 @@ const ListEmpleados = () => {
               </div>
               <div className="card-actions">
                 <button
-                Eliminar
-                  style={{
-                    backgroundColor: '#1565C0',
-                    color: 'white',
-                    border: 'none',
-                    padding: '8px 16px',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '4px',
-                    transition: 'all 0.3s ease',
-                    flex: 1
-                  }}
+                  Eliminar
+                  style={{ color: 'white', backgroundColor: 'blue', border: 'none', borderRadius: '5px', padding: '10px 20px', marginRight: '10px', fontSize: '16px', cursor: 'pointer' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     handleEdit(empleado);
@@ -248,22 +234,8 @@ const ListEmpleados = () => {
                   <i className="fas fa-edit"></i> Editar
                 </button>
                 <button
-                className="delete-btn"
-                  style={{
-                    backgroundColor: '#C62828',
-                    color: 'white',
-                    border: 'none',
-                    padding: '8px 16px',
-                    borderRadius: '6px',
-                    cursor: 'pointer',
-                    fontSize: '13px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    gap: '4px',
-                    transition: 'all 0.3s ease',
-                    flex: 1
-                  }}
+                  className="delete-btn"
+                  style={{ color: 'white', backgroundColor: '#C62828', border: 'none', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
                   onClick={(e) => {
                     e.stopPropagation();
                     eliminarEmpleado(empleado.id);
