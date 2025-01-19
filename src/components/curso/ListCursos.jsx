@@ -345,7 +345,19 @@ const ListCursos = () => {
                 className="card"
                 onClick={() => handleCardClick(curso)}
               >
-                <img src={curso.foto} alt={curso.nombre} />
+                {!curso.foto ? (
+                  <img
+                    className="curso-imagen"
+                    src="/default-course.jpg"
+                    alt={`Imagen por defecto de ${curso.nombre}`}
+                  />
+                ) : (
+                  <img
+                    className="curso-imagen"
+                    src={curso.foto}
+                    alt={curso.nombre}
+                  />
+                )}
                 <h4>{curso.nombre}</h4>
                 <p>{curso.descripcion}</p>
                 <span className="badge">{curso.nivelExperiencia}</span>
