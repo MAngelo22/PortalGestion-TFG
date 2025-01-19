@@ -1,111 +1,117 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useParams } from 'react-router-dom';
-import "./DetalleCurso.css";
-// import "../estilos/estilo.css";
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import "./DetalleCurso.css";
 import Navbar from '../NavBar';
 import Footer from '../Footer';
+import { format } from 'date-fns';
 
 const DetalleCurso = () => {
-  const location = useLocation();
-  const { curso } = location.state || {};
-  // const { id } = useParams();
-  const [loading, setLoading] = useState(true);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [curso, setCurso] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  console.log('Curso:', curso);
-  // useEffect(() => {
-  //   const obtenerCurso = async () => {
-  //     try {
-  //       const response = await axios.get(`http://localhost:8085/api/curso/${id}`,
-  //       { withCredentials: true });
-  //       setCurso(response.data);
-  //     } catch (error) {
-  //       setError('Error al cargar los datos del curso');
-  //       console.error('Error:', error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
+  // Obtener curso
+  const obtenerCurso = async () => {
+    setLoading(true);
+    try {
+      const response = await axios.get(`http://localhost:8085/api/curso/${id}`, {
+        withCredentials: true
+      });
+      setCurso(response.data);
+    } catch (error) {
+      setError('Error al obtener los datos del curso');
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-  //   obtenerCurso();
-  // }, [id]);
+  useEffect(() => {
+    obtenerCurso();
+  }, [id]);
 
-  // if (loading) return <div>Cargando...</div>;
-  // if (error) return <div>{error}</div>;
-  // if (!curso) return <div>No se encontró el curso</div>;
+  if (loading) return <div className="loading-overlay">Cargando...</div>;
+  if (error) return <div className="error-message">{error}</div>;
+  if (!curso) return <div>No se encontró el curso</div>;
 
   return (
     <>
-
       <Navbar />
       <div className="detalle-curso">
         <Link to="/cursos" className="back-link">
           ← Volver
         </Link>
-        <h1 className="nombre">Curso Avanzado de React</h1>
-        <ul className="temario-lista">
-          <li><strong>Descripción:</strong> Curso completo de React desde componentes hasta arquitecturas avanzadas.</li>
-          <li><strong>Duración:</strong> 40 horas de contenido práctico y teórico.</li>
-          <li><strong>Nivel:</strong> Intermedio - Avanzado</li>
-          <li><strong>Certificación:</strong> Certificado profesional al completar el curso.</li>
-        </ul>
 
-        <div className="informacion-extra">
-          <span className="nivel">Nivel: Avanzado</span>
-          <span className="actualizacion">Última actualización: 03/2024</span>
-        </div>
+        <div className="detalle-contenido">
+          <div className="detalle-info">
+            <h1 className="nombre">{curso.nombre}</h1>
+            <ul className="temario-lista">
+              <li><strong>Descripción:</strong> {curso.descripcion}</li>
+              <li><strong>Profesor:</strong> {curso.profesor}</li>
+              <li><strong>Nivel:</strong> {curso.nivelExperiencia}</li>
+              <li><strong>Metodología:</strong> {curso.metodologia}</li>
+            </ul>
 
+            <div className="informacion-extra">
+              <span className="nivel">Nivel: {curso.nivelExperiencia}</span>
+              <span className="actualizacion"> Última actualización: {format(new Date(curso.ultimaActualizacion), 'dd/MM/yyyy')}</span>
+            </div>
 
-        <div className="calificacion">
-          <span className="estrellas">⭐⭐⭐⭐⭐</span>
-          <span className="puntaje">4.8</span>
-        </div>
+            <div className="calificacion">
+              <span className="estrellas">{"⭐".repeat(curso.estrellas)}</span>
+              <span className="puntaje">{curso.estrellas}</span>
+            </div>
 
-        <div className="acciones">
-          <button className="boton-comenzar">Comenzar el curso ...</button>
-          <button className="boton-favorito">❤️</button>
-        </div>
+            <div className="acciones">
+              <button className="boton-comenzar">Comenzar el curso ...</button>
+              {/* <button className="boton-favorito">❤️</button>
+               */}
+              {curso.destacado ? (
+                <button className="boton-favorito">💙</button>
+              ) : (<button className="boton-favorito">🤍</button>
+              )}
+            </div>
 
-        {/* <div className="grupo-tabs-foto"> */}
-        <div className="tabs">
-          <button className="tab activa">Temario</button>
-          <button className="tab">Recursos</button>
-          <button className="tab">Proyectos</button>
-          <button className="tab">Evaluación</button>
-        </div>
-        <img
-          className="media"
-          src="/curso.png"
-          alt="Video curso"
-        />
-        {/* </div> */}
+            <div className="tabs">
+              <button className="tab activa">Temario</button>
+              <button className="tab">Recursos</button>
+              <button className="tab">Proyectos</button>
+              <button className="tab">Evaluación</button>
+            </div>
 
-        <ul className="contenido">
-          <li>
-            <strong>Módulo 1:</strong></li> Fundamentos de React
-          <li>
-            <strong>Módulo 2:</strong></li> Hooks y Estado
-          <li>
-            <strong>Módulo 3:</strong></li> Gestión de Rutas
-          <li>
-            <strong>Módulo 4:</strong></li> Redux y Context
-        </ul>
-        {/* <div className="contenido">
-          <div className="contenido-item">
-            <strong>Analista de datos:</strong> &gt; 4 años
+            <div className="modulos-grid">
+              {curso.temario && curso.temario.split(',').map((modulo, index) => (
+                <div key={index} className="modulo-item">
+                  <strong>Módulo {index + 1}:</strong> {modulo.trim()}
+                </div>
+              ))}
+            </div>
           </div>
-          <div className="contenido-item">
-            <strong>Python:</strong> Pandas - NumPy
-          </div>
-          <div className="contenido-item">
-            <strong>SQL:</strong> Avanzado
-          </div>
-          <div className="contenido-item">
-            <strong>Power BI:</strong> Avanzado
-          </div>
-        </div> */}
 
+          <div className="detalle-imagen">
+            {/* <img
+              className="curso-imagen"
+              src={curso.foto || '/default-course.jpg'}
+              alt={`Imagen de ${curso.nombre}`}
+            /> */}
+            {!curso.foto ? (
+              <img
+                className="curso-imagen"
+                src="/curso.png"
+                alt={`Imagen por defecto de ${curso.nombre}`}
+              />
+            ) : (
+              <img
+                className="curso-imagen"
+                src={curso.foto}
+                alt={`Imagen de ${curso.nombre}`}
+              />
+            )}
+          </div>
+        </div>
       </div>
       <Footer />
     </>

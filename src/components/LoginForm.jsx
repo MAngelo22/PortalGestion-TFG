@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
-import logo from "../media/img/porrtalgestion_logo.png"; // Importa el logo directamente
+import { useNavigate } from "react-router-dom";
+import logo from "../media/img/porrtalgestion_logo.png";
 import "./estilos/estilo.css";
 
 const LoginForm = ({ onLoginSuccess }) => {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -17,11 +19,15 @@ const LoginForm = ({ onLoginSuccess }) => {
           username: username,
           contrasena: password,
         },
-        { withCredentials: true } // Esto es para las cookies de sesión se envíen y reciban
+        { withCredentials: true }
       );
-      if (response.status === 200) {
+
+      if (response.status === 200 && response.data) {
+        localStorage.setItem('token', response.data.token);
+        localStorage.setItem('userUsername', response.data.username);
         setMessage("Login exitoso!");
         onLoginSuccess();
+        navigate('/dashboard');
       }
     } catch (error) {
       console.error("Error en el login", error);
@@ -60,7 +66,7 @@ const LoginForm = ({ onLoginSuccess }) => {
             <label htmlFor="username">Usuario:</label>
             <input
               id="username"
-              type="username"
+              type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               placeholder="Ingrese su usuario"
@@ -81,10 +87,10 @@ const LoginForm = ({ onLoginSuccess }) => {
             />
           </div>
           <button type="submit" className="submit-button">
-            Iniciar Sesion
+            Iniciar Sesión
           </button>
+          {message && <p className={message.includes("exitoso") ? "success-message" : "error-message"}>{message}</p>}
         </form>
-        {message && <p className="message">{message}</p>}
       </div>
     </div>
   );

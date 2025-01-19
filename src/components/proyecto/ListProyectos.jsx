@@ -149,7 +149,7 @@ const ListProyectos = () => {
   };
 
   const handleCardClick = (proyecto) => {
-    navigate(`/proyecto/${proyecto.id}`, { state: { proyecto } });
+    navigate(`/proyectos/${proyecto.id}`, { state: { proyecto } });
   };
 
   const handlePageClick = (data) => {
@@ -212,10 +212,10 @@ const ListProyectos = () => {
       <div className="body-container">
         <Filter />
 
-        <main className="cards-container"  style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto'}}>
+        <main className="cards-container" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto' }}>
           <div className="add-employee-section">
             <button
-              className="add-employee-btn"
+              className="add-employee-btn" style={{ color: 'white', backgroundColor: 'green', border: 'none', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
               onClick={() => setShowForm(true)}
             >
               Añadir Nuevo Proyecto
@@ -291,7 +291,20 @@ const ListProyectos = () => {
               className="card"
               onClick={() => handleCardClick(proyecto)}
             >
-              {proyecto.foto && <img src={proyecto.foto} alt={proyecto.nombre} />}
+              {!proyecto.foto ? (
+                <img
+                  className="proyecto-imagen"
+                  src="/default-project.png"
+                  alt={`Imagen por defecto de ${proyecto.nombre}`}
+                />
+              ) : (
+                <img
+                  className="proyecto-imagen"
+                  src={proyecto.foto}
+                  alt={proyecto.nombre}
+                />
+              )}
+
               <h4>{proyecto.nombre}</h4>
               <p>{proyecto.descripcion}</p>
               <span className="badge">{proyecto.nivelExperiencia}</span>
@@ -303,6 +316,7 @@ const ListProyectos = () => {
 
               <div className="card-actions">
                 <button
+                  style={{ color: 'white', backgroundColor: 'blue', border: 'none', marginRight: '10px', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
                   className="edit-btn"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -315,6 +329,7 @@ const ListProyectos = () => {
                 </button>
 
                 <button
+                  style={{ color: 'white', backgroundColor: '#C62828', border: 'none', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
                   className="delete-btn"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -386,7 +401,7 @@ const ListProyectos = () => {
         </main>
       </div>
       <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
-      <Footer /> 
+      <Footer />
     </>
   );
 };

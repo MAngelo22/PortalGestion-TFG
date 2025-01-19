@@ -56,3 +56,19 @@
     background: #f44336;
     color: white;
   }
+
+  .cards-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
+  }
+  
+  .add-employee-section {
+    position: absolute;
+    top: -50px;  /* Ajusta según necesites */
+    left: 20px;
+    z-index: 1;
+  }
+  

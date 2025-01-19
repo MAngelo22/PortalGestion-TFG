@@ -27,7 +27,7 @@ const MisProyectos = (activeTab) => {
   useEffect(() => {
     setLoading(true);
     setError(null);
-    
+
     axios.get('http://localhost:8085/api/usuario/mis-proyectos',
       { withCredentials: true })
       .then(response => {
@@ -42,27 +42,44 @@ const MisProyectos = (activeTab) => {
 
 
   return (
-    <>
-      
-        <div className="mis-proyectos-content">
-          <h1 className="mis-proyectos-title">Mis proyectos</h1>
-          <div>
-            {currentItems && (currentItems.map((proyecto, index) => (
-              <div key={index}>
-                <h2>{proyecto.nombre}</h2>
-                <p>{proyecto.descripcion}</p>
-                <p>{proyecto.categoria}</p>
-              </div>
-            )) || <img src={cursosImg} alt="Ilustración de proyectos" className="proyectos-image" />)}
-            <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
-          </div>
-          <p className="proyectos-description">Añade formación a tu perfil</p>
-          <Link to="/catPro" className="btn-link">
-            <button className="explorar-proyectos-button">Explora el catálogo de proyectos</button>
-          </Link>
-        </div>
-    
-    </>
+
+    <div>
+      <Navbar />
+      <div className="mis-cursos-container">
+        <h1 className="mis-cursos-title">Mis Proyectos</h1>
+        <img src={cursosImg} alt="Ilustración de cursos" className="cursos-image" />
+        <p className="cursos-description">Añade proyectos a tu perfil</p>
+        <Link to="/catPro" className="btn-link">
+          <button className="explorar-cursos-button">Explora el catálogo de cursos</button>
+        </Link>
+      </div>
+      <div>
+        <Footer />
+      </div>
+
+    </div>
+
+    // <>
+
+    //     <div className="mis-proyectos-content">
+    //       <h1 className="mis-proyectos-title">Mis proyectos</h1>
+    //       <div>
+    //         {currentItems && (currentItems.map((proyecto, index) => (
+    //           <div key={index}>
+    //             <h2>{proyecto.nombre}</h2>
+    //             <p>{proyecto.descripcion}</p>
+    //             <p>{proyecto.categoria}</p>
+    //           </div>
+    //         )) || <img src={cursosImg} alt="Ilustración de proyectos" className="proyectos-image" />)}
+    //         <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
+    //       </div>
+    //       <p className="proyectos-description">Añade formación a tu perfil</p>
+    //       <Link to="/catPro" className="btn-link">
+    //         <button className="explorar-proyectos-button">Explora el catálogo de proyectos</button>
+    //       </Link>
+    //     </div>
+
+    // </>
   );
 };
 

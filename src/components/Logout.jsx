@@ -38,7 +38,7 @@ const Logout = () => {
 
   return (
     <>
-      <button onClick={handleLogout}>
+      <button className="submit-button" onClick={handleLogout}>
         Cerrar sesión
       </button>
       {message && <p>{message}</p>}

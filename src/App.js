@@ -43,13 +43,13 @@ const App = () => {
             )
           }
         />+
-        <Route path="/proyecto/:id" element={<DetalleProyecto />} />
-        <Route path="/curso/:id" element={<DetalleCurso />} />
-        <Route path="/empleado/:id" element={<DetalleEmpleado />} />
+        <Route path="/proyectos/:id" element={<DetalleProyecto />} />
+        <Route path="/cursos/:id" element={<DetalleCurso />} />
+        <Route path="/empleados/:id" element={<DetalleEmpleado />} />
         <Route path="/catCur" element={<CatCursos />} />
         <Route path="/catPro" element={<CatProyectos />} />
         <Route path="/miperfil" element={<MiPerfil />} />
-        <Route path="/mispestañas" element={<GrupoPestañas />} />
+        {/* <Route path="/mispestañas" element={<GrupoPestañas />} /> */}
         <Route path="/miscursos" element={<MisCursos />} />
         <Route path="/misProyectos" element={<MisProyectos />} />
         <Route path="/contactanos" element={<Contactanos />} />

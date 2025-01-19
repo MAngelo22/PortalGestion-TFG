@@ -131,12 +131,8 @@ const ListCursos = () => {
   };
 
   const handleCardClick = (curso) => {
-    navigate(`/curso/${curso.id}`, { state: { curso } });
+    navigate(`/cursos/${curso.id}`, { state: { curso } });
   };
-
-  // const handleCardClick = (nombre) => {
-  //   navigate(`/curso/${encodeURIComponent(nombre)}`);
-  // };
 
   const handlePageClick = (data) => {
     setCurrentPage(data.selected);
@@ -208,7 +204,23 @@ const ListCursos = () => {
         >
           <div className="add-employee-section">
             <button
+              style={{
+                backgroundColor: '#2E7D32',
+                color: 'white',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                transition: 'all 0.3s ease',
+                fontWeight: '500'
+              }}
               className="add-employee-btn"
+
               onClick={() => setShowForm(true)}
             >
               Añadir Nuevo Curso
@@ -345,7 +357,19 @@ const ListCursos = () => {
                 className="card"
                 onClick={() => handleCardClick(curso)}
               >
-                <img src={curso.foto} alt={curso.nombre} />
+                {!curso.foto ? (
+                  <img
+                    className="curso-imagen"
+                    src="/curso.png"
+                    alt={`Imagen por defecto de ${curso.nombre}`}
+                  />
+                ) : (
+                  <img
+                    className="curso-imagen"
+                    src={curso.foto}
+                    alt={curso.nombre}
+                  />
+                )}
                 <h4>{curso.nombre}</h4>
                 <p>{curso.descripcion}</p>
                 <span className="badge">{curso.nivelExperiencia}</span>
@@ -356,6 +380,7 @@ const ListCursos = () => {
                 <button className="fav-button">♡</button>
                 <div className="card-actions">
                   <button
+                    style={{ color: 'white', backgroundColor: 'blue', border: 'none', marginRight: '10px', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
                     className="edit-btn"
                     onClick={(e) => {
                       e.stopPropagation();
@@ -369,6 +394,7 @@ const ListCursos = () => {
 
                   <button
                     className="delete-btn"
+                    style={{ color: 'white', backgroundColor: '#C62828', border: 'none', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer' }}
                     onClick={(e) => {
                       e.stopPropagation();
                       eliminarCurso(curso.id);
