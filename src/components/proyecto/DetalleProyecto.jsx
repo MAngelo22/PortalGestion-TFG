@@ -168,11 +168,24 @@ const DetalleProyecto = () => {
             </div>
 
             <div className="detalle-imagen">
-              <img
+              {/* <img
                 className="proyecto-imagen"
                 src={proyecto.foto || '/default-project.png'}
                 alt={`Imagen de ${proyecto.nombre}`}
-              />
+              /> */}
+              {!proyecto.foto ? (
+                <img
+                  className="proyecto-imagen"
+                  src="/default-project.png"
+                  alt={`Imagen por defecto de ${proyecto.nombre}`}
+                />
+              ) : (
+                <img
+                  className="proyecto-imagen"
+                  src={proyecto.foto}
+                  alt={`Imagen de ${proyecto.nombre}`}
+                />
+              )}
             </div>
           </div>
         </div>
