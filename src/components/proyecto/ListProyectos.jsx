@@ -212,7 +212,7 @@ const ListProyectos = () => {
       <div className="body-container">
         <Filter />
 
-        <main className="cards-container"  style={{display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto'}}>
+        <main className="cards-container" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto' }}>
           <div className="add-employee-section">
             <button
               className="add-employee-btn"
@@ -291,7 +291,20 @@ const ListProyectos = () => {
               className="card"
               onClick={() => handleCardClick(proyecto)}
             >
-              {proyecto.foto && <img src={proyecto.foto} alt={proyecto.nombre} />}
+              {!proyecto.foto ? (
+                <img
+                  className="proyecto-imagen"
+                  src="/default-project.png"
+                  alt={`Imagen por defecto de ${proyecto.nombre}`}
+                />
+              ) : (
+                <img
+                  className="proyecto-imagen"
+                  src={proyecto.foto}
+                  alt={proyecto.nombre}
+                />
+              )}
+
               <h4>{proyecto.nombre}</h4>
               <p>{proyecto.descripcion}</p>
               <span className="badge">{proyecto.nivelExperiencia}</span>
@@ -386,7 +399,7 @@ const ListProyectos = () => {
         </main>
       </div>
       <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
-      <Footer /> 
+      <Footer />
     </>
   );
 };

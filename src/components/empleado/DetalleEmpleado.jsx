@@ -36,6 +36,28 @@ const DetalleEmpleado = () => {
   if (error) return <div className="error-message">{error}</div>;
   if (!empleado) return <div>No se encontró el empleado</div>;
 
+
+
+  // En desarrollo
+  const asignarEmpToProyect = async (idProyecto) => {
+
+    console.log('Asignar Proyecto: ', idProyecto);
+    setLoading(true);
+    setError(null);
+    try {
+
+      const response = await axios.post(`http://localhost:8085/api/empleado/asignar-a-proyecto${idProyecto}`,
+        { withCredentials: true });
+      // setEmpleados(empToProyect);
+      alert('Empleado asignado a proyecto exitosamente');
+    } catch (error) {
+      setError('Error al asignar el empleado alproyecto');
+      console.error('Error:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -43,7 +65,7 @@ const DetalleEmpleado = () => {
         <Link to="/empleados" className="back-link">
           ← Volver
         </Link>
-        
+
         <div className="detalle-contenido">
           <div className="detalle-info">
             <h1 className="nombre">{empleado.nombre} {empleado.apellidos}</h1>
@@ -65,7 +87,9 @@ const DetalleEmpleado = () => {
             </div>
 
             <div className="acciones">
-              <button className="boton-asignar">Asignar a proyecto ...</button>
+              <button className="boton-asignar"
+                onClick={() => asignarEmpToProyect('1')}
+              > Asignar a proyecto ...</button>
               <button className="boton-favorito">❤️</button>
             </div>
 
