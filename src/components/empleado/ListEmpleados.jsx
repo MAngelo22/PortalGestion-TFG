@@ -224,7 +224,6 @@ const ListEmpleados = () => {
               </div>
               <div className="card-actions">
                 <button
-                  Eliminar
                   style={{ color: 'white', backgroundColor: 'blue', border: 'none', borderRadius: '5px', padding: '10px 20px', marginRight: '10px', fontSize: '16px', cursor: 'pointer' }}
                   onClick={(e) => {
                     e.stopPropagation();
