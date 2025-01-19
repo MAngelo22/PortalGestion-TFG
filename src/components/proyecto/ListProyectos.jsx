@@ -149,7 +149,7 @@ const ListProyectos = () => {
   };
 
   const handleCardClick = (proyecto) => {
-    navigate(`/proyecto/${proyecto.id}`, { state: { proyecto } });
+    navigate(`/proyectos/${proyecto.id}`, { state: { proyecto } });
   };
 
   const handlePageClick = (data) => {

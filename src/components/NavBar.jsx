@@ -70,7 +70,8 @@ const Navbar = ({ onLogout }) => {
   };
 
   const isActive = (path) => {
-    return location.pathname === path ? "active-link" : "";
+    const currentPath = location.pathname;
+    return currentPath.includes(path.slice(1)) ? "active-link" : "";
   };
 
   return (
@@ -89,7 +90,7 @@ const Navbar = ({ onLogout }) => {
           />
           <button type="submit">🔍</button>
         </form>
-        
+
         {showResults && (
           <div className="search-results">
             {searchResults.empleados?.length > 0 && (
@@ -106,7 +107,7 @@ const Navbar = ({ onLogout }) => {
                 ))}
               </div>
             )}
-            
+
             {searchResults.cursos?.length > 0 && (
               <div className="result-section">
                 <h3>Cursos</h3>
@@ -121,7 +122,7 @@ const Navbar = ({ onLogout }) => {
                 ))}
               </div>
             )}
-            
+
             {searchResults.proyectos?.length > 0 && (
               <div className="result-section">
                 <h3>Proyectos</h3>
@@ -136,12 +137,12 @@ const Navbar = ({ onLogout }) => {
                 ))}
               </div>
             )}
-            
-            {!searchResults.empleados?.length && 
-             !searchResults.cursos?.length && 
-             !searchResults.proyectos?.length && (
-              <div className="no-results">No se encontraron resultados</div>
-            )}
+
+            {!searchResults.empleados?.length &&
+              !searchResults.cursos?.length &&
+              !searchResults.proyectos?.length && (
+                <div className="no-results">No se encontraron resultados</div>
+              )}
           </div>
         )}
       </div>
