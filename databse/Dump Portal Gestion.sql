@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `portal_gestion` /*!40100 DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci */;
-USE `portal_gestion`;
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
 -- Host: localhost    Database: portal_gestion
@@ -65,6 +63,7 @@ CREATE TABLE `cursos` (
   `dificultad` varchar(50) DEFAULT NULL,
   `ultima_actualizacion` timestamp NOT NULL DEFAULT current_timestamp(),
   `destacado` tinyint(1) DEFAULT 0,
+  `estrellas` int(11) DEFAULT NULL CHECK (`estrellas` between 1 and 5),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -75,7 +74,7 @@ CREATE TABLE `cursos` (
 
 LOCK TABLES `cursos` WRITE;
 /*!40000 ALTER TABLE `cursos` DISABLE KEYS */;
-INSERT INTO `cursos` VALUES (1,'Curso de SQL',NULL,'Aprende SQL desde cero','Principiante','SELECT, INSERT, UPDATE, DELETE','Carlos Rodríguez','Teórico-práctico','Fácil','2023-12-01 09:00:00',1),(2,'Curso de Python',NULL,'Curso avanzado de Python','Avanzado','Funciones, Clases, Librerías','María López','Práctico','Media','2023-11-15 14:00:00',0),(3,'Curso de Java',NULL,'Fundamentos de Java','Intermedio','OOP, Colecciones, Streams','Juan Pérez','Teórico','Media','2023-10-10 10:00:00',1),(4,'Curso de HTML',NULL,'Desarrollo web con HTML','Principiante','Etiquetas, Formularios, Multimedia','Ana García','Práctico','Fácil','2023-09-05 12:00:00',0),(5,'Curso de CSS',NULL,'Estilos con CSS','Intermedio','Selectores, Flexbox, Grid','Luis Martinez','Práctico','Media','2023-08-20 09:00:00',1),(6,'Curso de JavaScript',NULL,'JavaScript Básico','Principiante','Variables, Funciones, DOM','Pedro Lopez','Teórico-práctico','Fácil','2023-07-15 11:00:00',0);
+INSERT INTO `cursos` VALUES (1,'Curso de SQL',NULL,'Aprende SQL desde cero','Principiante','SELECT, INSERT, UPDATE, DELETE','Carlos Rodríguez','Teórico-práctico','Fácil','2023-12-01 09:00:00',1,5),(2,'Curso de Python',NULL,'Curso avanzado de Python','Avanzado','Funciones, Clases, Librerías','María López','Práctico','Media','2023-11-15 14:00:00',1,4),(3,'Curso de Java',NULL,'Fundamentos de Java','Intermedio','OOP, Colecciones, Streams','Juan Pérez','Teórico','Media','2023-10-10 10:00:00',1,5),(4,'Curso de HTML',NULL,'Desarrollo web con HTML','Principiante','Etiquetas, Formularios, Multimedia','Ana García','Práctico','Fácil','2023-09-05 12:00:00',0,4),(5,'Curso de CSS',NULL,'Estilos con CSS','Intermedio','Selectores, Flexbox, Grid','Luis Martinez','Práctico','Media','2023-08-20 09:00:00',0,5),(6,'Curso de JavaScript',NULL,'JavaScript Básico','Principiante','Variables, Funciones, DOM','Pedro Lopez','Teórico-práctico','Fácil','2023-07-15 11:00:00',1,5);
 /*!40000 ALTER TABLE `cursos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,6 +96,12 @@ CREATE TABLE `empleados` (
   `departamento` varchar(100) DEFAULT NULL,
   `fecha_incorporacion` date DEFAULT NULL,
   `foto` blob DEFAULT NULL,
+  `perfil` varchar(255) DEFAULT NULL,
+  `experiencia` varchar(255) DEFAULT NULL,
+  `conocimientos` varchar(255) DEFAULT NULL,
+  `proyectos` varchar(500) DEFAULT NULL,
+  `nivel` varchar(50) DEFAULT NULL,
+  `estrellas` int(11) DEFAULT NULL CHECK (`estrellas` between 1 and 5),
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -108,7 +113,7 @@ CREATE TABLE `empleados` (
 
 LOCK TABLES `empleados` WRITE;
 /*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,'Juan','Perez','juan.perez@example.com','123456789','España','Madrid','IT','2023-01-15',NULL),(2,'Ana','Gomez','ana.gomez@example.com','987654321','España','Barcelona','Marketing','2022-03-10',NULL),(3,'Luis','Martinez','luis.martinez@example.com','456123789','España','Valencia','Ventas','2021-07-22',NULL),(4,'Carlos','Sanchez','carlos.sanchez@example.com','321654987','España','Sevilla','Finanzas','2020-11-05',NULL),(5,'Maria','Rodriguez','maria.rodriguez@example.com','789456123','España','Bilbao','Recursos Humanos','2019-09-30',NULL),(6,'Pedro','Lopez','pedro.lopez@example.com','654789321','España','Zaragoza','Logística','2018-05-18',NULL);
+INSERT INTO `empleados` VALUES (1,'Juan','Perez','juan.perez@example.com','123456789','España','Madrid','IT','2023-01-15',NULL,'Desarrollador Full Stack especializado en arquitecturas cloud','6 años desarrollando aplicaciones web escalables','React, Node.js, AWS, MongoDB','Migración exitosa de infraestructura on-premise a cloud para empresa Fortune 500','Experto',5),(2,'Ana','Gomez','ana.gomez@example.com','987654321','España','Barcelona','Marketing','2022-03-10',NULL,'DevOps Engineer con enfoque en automatización','5 años en implementación de CI/CD','Docker, Kubernetes, Jenkins, Terraform','Reducción del tiempo de despliegue en 70% mediante automatización','Avanzado',4),(3,'Luis','Martinez','luis.martinez@example.com','456123789','España','Valencia','Ventas','2021-07-22',NULL,'Arquitecto de Software especialista en microservicios','8 años diseñando sistemas distribuidos','Java, Spring Boot, Kafka, Redis','Diseño e implementación de arquitectura de microservicios para fintech','Experto',5),(4,'Carlos','Sanchez','carlos.sanchez@example.com','321654987','España','Sevilla','Finanzas','2020-11-05',NULL,'UX/UI Designer con enfoque en accesibilidad','4 años en diseño de interfaces','Figma, Adobe XD, HTML/CSS, JavaScript','Rediseño de app bancaria aumentando usabilidad en 45%','Intermedio',4),(5,'Maria','Rodriguez','maria.rodriguez@example.com','789456123','España','Bilbao','Recursos Humanos','2019-09-30',NULL,'Data Scientist especializado en ML','5 años en modelos predictivos','Python, TensorFlow, scikit-learn, R','Implementación de sistema de detección de fraude con 99% precisión','Avanzado',5),(6,'Pedro','Lopez','pedro.lopez@example.com','654789321','España','Zaragoza','Logística','2018-05-18',NULL,'Security Engineer especialista en pentesting','6 años en ciberseguridad','Kali Linux, Metasploit, Wireshark, Python','Implementación de sistema Zero Trust reduciendo brechas en 90%','Experto',5);
 /*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -129,6 +134,7 @@ CREATE TABLE `proyectos` (
   `dificultad` varchar(50) DEFAULT NULL,
   `ultima_actualizacion` timestamp NOT NULL DEFAULT current_timestamp(),
   `destacado` tinyint(1) DEFAULT 0,
+  `estrellas` int(11) DEFAULT NULL CHECK (`estrellas` between 1 and 5),
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -139,7 +145,7 @@ CREATE TABLE `proyectos` (
 
 LOCK TABLES `proyectos` WRITE;
 /*!40000 ALTER TABLE `proyectos` DISABLE KEYS */;
-INSERT INTO `proyectos` VALUES (1,'Proyecto Web',NULL,'Desarrollo de una aplicación web','Intermedio','HTML, CSS, JavaScript','Media','2023-10-20 10:00:00',1),(2,'Proyecto Data Science',NULL,'Análisis de datos con Python','Avanzado','Python, Pandas, Numpy','Alta','2023-09-05 07:00:00',0),(3,'Proyecto Mobile',NULL,'Desarrollo de una app móvil','Intermedio','Kotlin, Swift','Media','2023-11-11 15:00:00',1),(4,'Proyecto DevOps',NULL,'Implementación de CI/CD','Avanzado','Docker, Jenkins, Kubernetes','Alta','2023-12-05 17:00:00',0),(5,'Proyecto AI',NULL,'Desarrollo de modelos de IA','Avanzado','Python, TensorFlow, Keras','Alta','2023-08-01 12:00:00',1),(6,'Proyecto Blockchain',NULL,'Desarrollo con Blockchain','Intermedio','Solidity, Ethereum','Media','2023-07-20 08:00:00',0);
+INSERT INTO `proyectos` VALUES (1,'Proyecto Web',NULL,'Desarrollo de una aplicación web','Intermedio','HTML, CSS, JavaScript','Media','2023-10-20 10:00:00',1,5),(2,'Proyecto Data Science',NULL,'Análisis de datos con Python','Avanzado','Python, Pandas, Numpy','Alta','2023-09-05 07:00:00',1,4),(3,'Proyecto Mobile',NULL,'Desarrollo de una app móvil','Intermedio','Kotlin, Swift','Media','2023-11-11 15:00:00',1,5),(4,'Proyecto DevOps',NULL,'Implementación de CI/CD','Avanzado','Docker, Jenkins, Kubernetes','Alta','2023-12-05 17:00:00',0,4),(5,'Proyecto AI',NULL,'Desarrollo de modelos de IA','Avanzado','Python, TensorFlow, Keras','Alta','2023-08-01 12:00:00',0,5),(6,'Proyecto Blockchain',NULL,'Desarrollo con Blockchain','Intermedio','Solidity, Ethereum','Media','2023-07-20 08:00:00',1,5);
 /*!40000 ALTER TABLE `proyectos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,4 +332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-14  3:58:21
+-- Dump completed on 2025-01-19 19:55:59
