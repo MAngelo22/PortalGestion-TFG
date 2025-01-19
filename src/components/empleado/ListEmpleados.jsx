@@ -17,7 +17,7 @@ const ListEmpleados = () => {
     nombre: '',
     apellidos: '',
     email: '',
-    descripcion: '',
+    perfil: '',
     nivel: 'Principiante',
     estrellas: 3,
     foto: ''
@@ -216,7 +216,7 @@ const ListEmpleados = () => {
                 />
               )}
               <h4>{empleado.nombre}</h4>
-              <p>{empleado.descripcion}</p>
+              <p>{empleado.perfil}</p>
               <span className="badge">{empleado.nivel}</span>
               <div className="rating">
                 {"★".repeat(empleado.estrellas)}
@@ -312,10 +312,10 @@ const ListEmpleados = () => {
                   />
                   <textarea
                     placeholder="Descripción"
-                    value={empleadoEditar.descripcion}
+                    value={empleadoEditar.perfil}
                     onChange={(e) => setEmpleadoEditar({
                       ...empleadoEditar,
-                      descripcion: e.target.value
+                      perfil: e.target.value
                     })}
                   />
                   <select
