@@ -163,13 +163,25 @@ const Navbar = ({ onLogout }) => {
           Sobre nosotros
         </Link>
       </nav>
-      <div className="user-profile">
-        <Link to="/miperfil">
-          <img src={userImg} alt="Usuario" className="user-img" />
-        </Link>
-        <span className="tooltip">Ir a tu perfil</span>
+      
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        marginRight: '20px'
+      }}>
+        <div className="user-profile" style={{
+          display: 'flex',
+          alignItems: 'center',
+          position: 'relative'
+        }}>
+          <Link to="/miperfil">
+            <img src={userImg} alt="Usuario" className="user-img" />
+          </Link>
+          <span className="tooltip">Ir a tu perfil</span>
+        </div>
+        <Logout />
       </div>
-      <Logout />
     </header>
   );
 };
