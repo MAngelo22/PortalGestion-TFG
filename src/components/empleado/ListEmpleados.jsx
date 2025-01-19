@@ -170,14 +170,29 @@ const ListEmpleados = () => {
         <main className="cards-container">
           <div className="add-employee-section">
             <button
-              className="add-employee-btn"
+            className="add-employee-btn"
+              style={{
+                backgroundColor: '#2E7D32',
+                color: 'white',
+                border: 'none',
+                padding: '10px 20px',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                fontSize: '14px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
+                transition: 'all 0.3s ease',
+                fontWeight: '500'
+              }}
               onClick={() => {
                 setIsEditing(false);
                 setEmpleadoEditar(empleadoVacio);
                 setShowForm(true);
               }}
             >
-              Añadir Nuevo Empleado
+              <i className="fas fa-plus"></i> Añadir Nuevo Empleado
             </button>
           </div>
 
@@ -209,22 +224,52 @@ const ListEmpleados = () => {
               </div>
               <div className="card-actions">
                 <button
-                  className="edit-btn"
+                Eliminar
+                  style={{
+                    backgroundColor: '#1565C0',
+                    color: 'white',
+                    border: 'none',
+                    padding: '8px 16px',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontSize: '13px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '4px',
+                    transition: 'all 0.3s ease',
+                    flex: 1
+                  }}
                   onClick={(e) => {
                     e.stopPropagation();
                     handleEdit(empleado);
                   }}
                 >
-                  Editar
+                  <i className="fas fa-edit"></i> Editar
                 </button>
                 <button
-                  className="delete-btn"
+                className="delete-btn"
+                  style={{
+                    backgroundColor: '#C62828',
+                    color: 'white',
+                    border: 'none',
+                    padding: '8px 16px',
+                    borderRadius: '6px',
+                    cursor: 'pointer',
+                    fontSize: '13px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '4px',
+                    transition: 'all 0.3s ease',
+                    flex: 1
+                  }}
                   onClick={(e) => {
                     e.stopPropagation();
                     eliminarEmpleado(empleado.id);
                   }}
                 >
-                  Eliminar
+                  <i className="fas fa-trash"></i> Eliminar
                 </button>
               </div>
             </div>

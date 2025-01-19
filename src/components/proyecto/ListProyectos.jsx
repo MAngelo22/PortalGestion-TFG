@@ -215,7 +215,7 @@ const ListProyectos = () => {
         <main className="cards-container" style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', gap: '20px', width: 'auto' }}>
           <div className="add-employee-section">
             <button
-              className="add-employee-btn"
+              className="add-employee-btn" style={{color: 'white', backgroundColor: 'green', border: 'none', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer'}}
               onClick={() => setShowForm(true)}
             >
               Añadir Nuevo Proyecto
@@ -316,6 +316,7 @@ const ListProyectos = () => {
 
               <div className="card-actions">
                 <button
+                  style={{color: 'white', backgroundColor: 'blue', border: 'none', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer'}}
                   className="edit-btn"
                   onClick={(e) => {
                     e.stopPropagation();
@@ -328,6 +329,7 @@ const ListProyectos = () => {
                 </button>
 
                 <button
+                style={{color: 'white', backgroundColor: 'red', border: 'none', borderRadius: '5px', padding: '10px 20px', fontSize: '16px', cursor: 'pointer'}}
                   className="delete-btn"
                   onClick={(e) => {
                     e.stopPropagation();
