@@ -134,10 +134,6 @@ const ListCursos = () => {
     navigate(`/cursos/${curso.id}`, { state: { curso } });
   };
 
-  // const handleCardClick = (nombre) => {
-  //   navigate(`/curso/${encodeURIComponent(nombre)}`);
-  // };
-
   const handlePageClick = (data) => {
     setCurrentPage(data.selected);
   };
