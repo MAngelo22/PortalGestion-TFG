@@ -22,27 +22,27 @@ WHERE id = 5;
 UPDATE portal_gestion.proyectos SET estrellas = 5
 WHERE id = 6;
 
-ALTER TABLE portal_gestion.cursos
-ADD COLUMN estrellas INT CHECK (estrellas BETWEEN 1 AND 5);
+-- ALTER TABLE portal_gestion.cursos
+-- ADD COLUMN estrellas INT CHECK (estrellas BETWEEN 1 AND 5);
 
-UPDATE portal_gestion.cursos SET estrellas = 5
-WHERE id = 1;
-UPDATE portal_gestion.cursos SET estrellas = 4
-WHERE id = 2;
-UPDATE portal_gestion.cursos SET estrellas = 5
-WHERE id = 3;
-UPDATE portal_gestion.cursos SET estrellas = 4
-WHERE id = 4;
-UPDATE portal_gestion.cursos SET estrellas = 5
-WHERE id = 5;
-UPDATE portal_gestion.cursos SET estrellas = 5
-WHERE id = 6;
+-- UPDATE portal_gestion.cursos SET estrellas = 5
+-- WHERE id = 1;
+-- UPDATE portal_gestion.cursos SET estrellas = 4
+-- WHERE id = 2;
+-- UPDATE portal_gestion.cursos SET estrellas = 5
+-- WHERE id = 3;
+-- UPDATE portal_gestion.cursos SET estrellas = 4
+-- WHERE id = 4;
+-- UPDATE portal_gestion.cursos SET estrellas = 5
+-- WHERE id = 5;
+-- UPDATE portal_gestion.cursos SET estrellas = 5
+-- WHERE id = 6;
 
-update portal_gestion.cursos set destacado = null;
- Alter table portal_gestion.cursos 
- MODIFY COLUMN destacado BOOLEAN DEFAULT FALSE;
-update portal_gestion.cursos set destacado = true where id in (1,2,3,6);
-update portal_gestion.cursos set destacado = false where id in (4,5);
+-- update portal_gestion.cursos set destacado = null;
+--  Alter table portal_gestion.cursos 
+--  MODIFY COLUMN destacado BOOLEAN DEFAULT FALSE;
+-- update portal_gestion.cursos set destacado = true where id in (1,2,3,6);
+-- update portal_gestion.cursos set destacado = false where id in (4,5);
 
 update portal_gestion.proyectos set destacado = null;
  Alter table portal_gestion.proyectos 

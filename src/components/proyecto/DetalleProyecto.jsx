@@ -6,7 +6,6 @@ import Navbar from '../NavBar';
 import Footer from '../Footer';
 import { format } from 'date-fns';
 
-
 const DetalleProyecto = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -131,8 +130,8 @@ const DetalleProyecto = () => {
               </div>
 
               <div className="calificacion">
-                <span className="estrellas">{"⭐".repeat(proyecto.destacado)}</span>
-                <span className="puntaje">{proyecto.destacado}</span>
+                <span className="estrellas">{"⭐".repeat(proyecto.estrellas)}</span>
+                <span className="puntaje">{proyecto.estrellas}</span>
               </div>
 
               <div className="acciones">
@@ -147,8 +146,12 @@ const DetalleProyecto = () => {
                   >  Proyecto solicitado ({format(new Date(solicitado), 'dd/MM/yyyy')})</button>
                 )}
 
-                <button className="boton-asignar">Asignar proyecto a ...</button>
-                <button className="boton-favorito">❤️</button>
+                <button className="boton-asignar">Asignar proyecto a ... </button>
+                {/* <button className="boton-favorito">❤️</button> */}
+                {proyecto.destacado ? (
+                  <button className="boton-favorito">💙</button>
+                ) : (<button className="boton-favorito">🤍</button>
+                )}
               </div>
 
               <div className="tabs">

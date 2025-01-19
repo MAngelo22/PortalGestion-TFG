@@ -69,8 +69,10 @@ const DetalleCurso = () => {
               <button className="boton-comenzar">Comenzar el curso ...</button>
               {/* <button className="boton-favorito">❤️</button>
                */}
-
-              <button className="boton-favorito">{curso.destacado} </button>
+              {curso.destacado ? (
+                <button className="boton-favorito">💙</button>
+              ) : (<button className="boton-favorito">🤍</button>
+              )}
             </div>
 
             <div className="tabs">

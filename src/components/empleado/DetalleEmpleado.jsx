@@ -92,7 +92,7 @@ const DetalleEmpleado = () => {
                 onClick={() => asignarEmpToProyect('1')}
               > Asignar a proyecto ...</button>
               {/* <button className="boton-favorito">❤️</button> */}
-              <button className="boton-favorito">{empleado.destacado} </button>
+              {/* <button className="boton-favorito">{empleado.destacado} </button> */}
             </div>
 
             <div className="tabs">
