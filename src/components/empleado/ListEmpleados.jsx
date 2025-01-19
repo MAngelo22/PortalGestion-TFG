@@ -200,7 +200,7 @@ const ListEmpleados = () => {
             <div
               key={empleado.id}
               className="card"
-              onClick={() => navigate(`/empleado/${empleado.id}`, { state: { empleado } })}
+              onClick={() => navigate(`/empleados/${empleado.id}`, { state: { empleado } })}
             >
               {!empleado.foto ? (
                 <img

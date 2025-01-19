@@ -131,7 +131,7 @@ const ListCursos = () => {
   };
 
   const handleCardClick = (curso) => {
-    navigate(`/curso/${curso.id}`, { state: { curso } });
+    navigate(`/cursos/${curso.id}`, { state: { curso } });
   };
 
   // const handleCardClick = (nombre) => {
