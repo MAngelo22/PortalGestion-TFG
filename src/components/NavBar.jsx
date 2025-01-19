@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "./estilos/NavBar.css";
 import logo from "../media/img/porrtalgestion_logo.png";
 import userImg from "../media/img/perfil.png";
@@ -15,6 +15,7 @@ const Navbar = ({ onLogout }) => {
   });
   const [showResults, setShowResults] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSearch = async (e) => {
     e.preventDefault();
@@ -66,6 +67,10 @@ const Navbar = ({ onLogout }) => {
 
   const handleClickOutside = () => {
     setShowResults(false);
+  };
+
+  const isActive = (path) => {
+    return location.pathname === path ? "active-link" : "";
   };
 
   return (
@@ -141,11 +146,21 @@ const Navbar = ({ onLogout }) => {
         )}
       </div>
       <nav className="nav-links">
-        <a href="/dashboard">Catálogo</a>
-        <a href="/empleados">Empleados</a>
-        <a href="/proyectos">Proyectos</a>
-        <a href="/cursos">Cursos</a>
-        <a href="/Contactanos">Sobre nosotros</a>
+        <Link to="/dashboard" className={isActive('/dashboard')}>
+          Catálogo
+        </Link>
+        <Link to="/empleados" className={isActive('/empleados')}>
+          Empleados
+        </Link>
+        <Link to="/proyectos" className={isActive('/proyectos')}>
+          Proyectos
+        </Link>
+        <Link to="/cursos" className={isActive('/cursos')}>
+          Cursos
+        </Link>
+        <Link to="/contactanos" className={isActive('/contactanos')}>
+          Sobre nosotros
+        </Link>
       </nav>
       <div className="user-profile">
         <Link to="/miperfil">
