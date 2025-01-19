@@ -10,7 +10,7 @@ import MensajeAlerta from "../utils/MensajeAlerta.jsx";
 
 const ListEmpleados = () => {
   const navigate = useNavigate();
-  
+
   // 1. Estado inicial
   const empleadoVacio = {
     id: null,
@@ -89,11 +89,11 @@ const ListEmpleados = () => {
         empleadoEditar,
         { withCredentials: true }
       );
-      
-      setEmpleados(empleados.map(emp => 
+
+      setEmpleados(empleados.map(emp =>
         emp.id === empleadoEditar.id ? response.data : emp
       ));
-      
+
       setShowForm(false);
       setEmpleadoEditar(empleadoVacio);
       setIsEditing(false);
@@ -129,7 +129,7 @@ const ListEmpleados = () => {
   // 7. Funciones auxiliares
   const handleEdit = (empleado) => {
     setIsEditing(true);
-    setEmpleadoEditar({...empleado});
+    setEmpleadoEditar({ ...empleado });
     setShowForm(true);
   };
 
@@ -161,8 +161,8 @@ const ListEmpleados = () => {
   return (
     <>
       <Navbar />
-      <Filter/>
-      
+      <Filter />
+
       <div className="body-container">
         {loading && <div className="loading-overlay">Cargando...</div>}
         {error && <div className="error-message">{error}</div>}
@@ -187,7 +187,19 @@ const ListEmpleados = () => {
               className="card"
               onClick={() => navigate(`/empleado/${empleado.id}`, { state: { empleado } })}
             >
-              <img src={empleado.foto} alt={empleado.nombre} />
+              {!empleado.foto ? (
+                <img
+                  className="empleado-imagen"
+                  src="/default-empleado.png"
+                  alt={`Imagen por defecto de ${empleado.nombre}`}
+                />
+              ) : (
+                <img
+                  className="empleado-imagen"
+                  src={empleado.foto}
+                  alt={empleado.nombre}
+                />
+              )}
               <h4>{empleado.nombre}</h4>
               <p>{empleado.descripcion}</p>
               <span className="badge">{empleado.nivel}</span>
@@ -306,7 +318,7 @@ const ListEmpleados = () => {
         </main>
       </div>
       <Paginacion pageCount={pageCount} onPageChange={handlePageClick} />
-      <Footer/>
+      <Footer />
     </>
   );
 };
